@@ -50,7 +50,8 @@ header {
 /* Specific Styles */
 
 h1.name-brand {
-    font-size: 4rem;
+    font-size: 3rem;
+    font-weight: 900;
 }
 
 #content {
@@ -61,8 +62,14 @@ h1.name-brand {
 #intro {
     margin: auto;
     min-height: 100vh;
-    padding-top: 400px;
+    padding-top: 600px;
 }
+
+.intro-title {
+    font-size: 6rem;
+}
+
+/* Scrollbar */
 
 ::-webkit-scrollbar {
     width: 8px; /* Vertical scrollbar width */
