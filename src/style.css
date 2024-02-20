@@ -1,5 +1,28 @@
-@import url('./assets/fonts/orbitron/orbitron-stylesheet.css');
-@import url('./assets/fonts/manrope/manrope-stylesheet.css');
+@import url("./assets/fonts/orbitron/orbitron-stylesheet.css");
+@import url("./assets/fonts/manrope/manrope-stylesheet.css");
+
+/* Lenis recommended CSS */
+html.lenis {
+    height: auto;
+}
+
+.lenis.lenis-smooth {
+    scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+    overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+    overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+    pointer-events: none;
+}
+
+/* CSS */
 
 :root {
     --scrollbar-width: 8px;
@@ -11,7 +34,7 @@
     box-sizing: border-box;
     color: wheat;
 
-    font-family: 'Manrope', sans-serif;
+    font-family: "Manrope", sans-serif;
 }
 
 a {
@@ -19,7 +42,7 @@ a {
 }
 
 body {
-    background-color: #060B0B;
+    background-color: #060b0b;
     flex-direction: column;
     height: 300vh;
 }
@@ -45,6 +68,7 @@ header {
 
 .nav-links a {
     font-size: 2rem;
+    font-weight: 400;
 }
 
 /* Specific Styles */
