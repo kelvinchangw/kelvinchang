@@ -1,5 +1,8 @@
-:root {
+@import url('./assets/fonts/orbitron/orbitron-stylesheet.css');
+@import url('./assets/fonts/manrope/manrope-stylesheet.css');
 
+:root {
+    --scrollbar-width: 8px;
 }
 
 * {
@@ -7,8 +10,65 @@
     padding: 0;
     box-sizing: border-box;
     color: wheat;
+
+    font-family: 'Manrope', sans-serif;
+}
+
+a {
+    text-decoration: none;
 }
 
 body {
     background-color: #060B0B;
+    flex-direction: column;
+    height: 300vh;
+}
+
+header {
+    padding: 2rem 4rem;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    left: 0;
+    right: 0;
+}
+
+/* Shared Styles */
+
+.container {
+    display: flex;
+}
+
+.nav-links {
+    gap: 2rem;
+}
+
+.nav-links a {
+    font-size: 2rem;
+}
+
+/* Specific Styles */
+
+h1.name-brand {
+    font-size: 4rem;
+}
+
+#content {
+    display: flex;
+    width: calc(100vw - var(--scrollbar-width));
+}
+
+#intro {
+    margin: auto;
+    min-height: 100vh;
+    padding-top: 400px;
+}
+
+::-webkit-scrollbar {
+    width: 8px; /* Vertical scrollbar width */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: white; /* Color of the draggable scroll handle */
+    border-radius: 4px; /* Radius of the draggable scroll handle */
 }

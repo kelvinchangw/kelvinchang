@@ -10,5 +10,9 @@
     "scripts": {
         "start": "webpack serve --open",
         "build": "webpack --mode production"
+    },
+    "dependencies": {
+        "@studio-freight/lenis": "^1.0.35",
+        "gsap": "^3.12.5"
     }
 }
