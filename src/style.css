@@ -44,7 +44,6 @@ a {
 body {
     background-color: #060b0b;
     flex-direction: column;
-    height: 300vh;
 }
 
 header {
@@ -55,6 +54,35 @@ header {
     left: 0;
     right: 0;
 }
+
+.tech-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: gray;
+    /* border: 2px solid wheat; */
+    padding: 2rem 1rem;
+    width: 120px;
+    height: 120px;
+    border-radius: 4px;
+}
+
+.tech-item > img {
+    width: 50px;
+    height: 50px;
+}
+
+.tech-stack {
+    flex-wrap: wrap;
+    /* gap: 8px; */
+    justify-content: space-between;
+}
+
+/* .about-text {
+    justify-content: space-between;
+}*/
+
 
 /* Shared Styles */
 
@@ -67,31 +95,90 @@ header {
 }
 
 .nav-links a {
-    font-size: 2rem;
+    font-size: 1.6rem;
     font-weight: 400;
+}
+
+#intro,
+#about {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    max-width: 1400px;
 }
 
 /* Specific Styles */
 
-h1.name-brand {
+/*  */
+#name-title {
     font-size: 3rem;
     font-weight: 900;
 }
 
 #content {
     display: flex;
+    align-items: center;
     width: calc(100vw - var(--scrollbar-width));
+    flex-direction: column;
 }
 
 #intro {
+    justify-content: center;
+}
+
+#about {
+    flex-direction: column;
+    max-height: 100vh;
+    gap: 2rem;
+}
+
+#copyright {
     margin: auto;
-    min-height: 100vh;
-    padding-top: 600px;
+    align-items: center;
+    gap: 1rem;
+    flex-direction: column;
+    padding: 2rem 4rem;
+
+    background-color: gray;
 }
 
 .intro-title {
     font-size: 6rem;
 }
+
+.about-title {
+    align-self: flex-start;
+    font-size: 3rem;
+}
+
+.about-information {
+    gap: 4rem;
+}
+
+.about-text {
+    flex-direction: column;
+}
+
+.about-text .text {
+    font-size: 1.3rem;
+    text-align: justify;
+}
+
+.about-text a {
+    color: violet;
+    font-weight: 900;
+}
+
+.profile-pic {
+    /* ALERT */
+    /* Work on width and height */
+    max-width: auto;
+    max-height: 100%;
+    border-radius: 1rem;
+}
+
+
 
 /* Scrollbar */
 
@@ -100,6 +187,6 @@ h1.name-brand {
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: white; /* Color of the draggable scroll handle */
+    background-color: wheat; /* Color of the draggable scroll handle */
     border-radius: 4px; /* Radius of the draggable scroll handle */
 }

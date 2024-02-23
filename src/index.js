@@ -4,6 +4,10 @@ import "./style.css";
 // Lenis Smooth Scroll
 import Lenis from "@studio-freight/lenis";
 
+// Free version of GSAP's Scramble Text like text shuffle effect
+// https://www.npmjs.com/package/scramble-text
+import ScrambleText from 'scramble-text';
+
 // GSAP ScrollTrigger
 import { gsap } from "gsap";
 
@@ -16,7 +20,7 @@ gsap.registerPlugin(ScrollTrigger, TextPlugin, ScrollToPlugin);
 // Lenis + GSAP ScrollTrigger
 const lenis = new Lenis({
     duration: 1.2,
-    wheelMultiplier: 2,
+    wheelMultiplier: 1,
 });
 
 lenis.on("scroll", (e) => {
@@ -73,7 +77,7 @@ const introLink = document.querySelector(".nav-link.intro");
 // });
 
 gsap.to(introTitle, {
-    duration: 2,
+    duration: 1.2,
     text: {
         value: "Hello, I am Kelvin.",
     },
