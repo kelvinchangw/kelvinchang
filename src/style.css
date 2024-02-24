@@ -278,17 +278,28 @@ header {
     justify-content: center;
     gap: 2rem;
     width: 1400px;
-    margin-bottom: 50vh;
+    margin-bottom: 75vh;
 }
 
 .intro-title {
+    align-self: center;
     font-size: 6rem;
-    height: 8rem;
+    height: 10rem;
+    max-width: 100%;
 }
 
-.intro-text {
+.intro-slogan {
+    align-self: center;
     font-size: 3rem;
-    height: 6rem;
+    height: 10rem;
+    max-width: 100%;
+}
+
+.intro-summary {
+    align-self: center;
+    font-size: 2rem;
+    height: 10rem;
+    max-width: 100%;
 }
 
 #about {

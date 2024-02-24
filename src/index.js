@@ -37,7 +37,6 @@ gsap.ticker.add((time) => {
 
 gsap.ticker.lagSmoothing(0);
 
-
 // introLink.addEventListener("click", () => {
 //     lenis.scrollTo("#intro");
 // });
@@ -74,39 +73,48 @@ window.addEventListener("load", () => {
 
 // Replaces introTitle (which is an empty space) with "Hello, I am Kelvin."
 const introTitle = document.querySelector(".intro-title");
-const introText = document.querySelector(".intro-text");
+const introSlogan = document.querySelector(".intro-slogan");
+const introSummary = document.querySelector(".intro-summary");
 
 const introSection = document.querySelector("#intro");
 const aboutSection = document.querySelector("#about");
 
+// Animation for introTitle
 gsap.to(introTitle, {
-    duration: 1.2,
-    text: {
-        value: "Hello, I am Kelvin.",
-    },
+    text: "Hello, I am Kelvin.",
     ease: "none",
-});
-
-// gsap.to(introText, {
-//     delay: 1.2,
-//     duration: 1.2,
-//     text: {
-//         value: "I create things sometimes.",
-//     },
-//     ease: "none",
-// });
-
-gsap.to(introText, {
-    text: {
-        value: "I create things sometimes.",
-    },
     scrollTrigger: {
         trigger: introSection,
-        start: "1", // When the top of the trigger hits the top of the viewport
-        endTrigger: aboutSection, // Element that marks the end of the scrolling effect
-        end: "top bottom", // When the bottom of the endTrigger hits the top of the viewport
-        scrub: true, // Bind the animation progress to the scroll progress
-        markers: true, // Shows markers for debugging purposes
+        start: "top top",
+        end: "+=300",
+        scrub: true,
+        pin: true,
+    },
+});
+
+// Animation for introSlogan
+gsap.to(introSlogan, {
+    text: "I create things sometimes.",
+    ease: "none",
+    scrollTrigger: {
+        trigger: introSection,
+        start: "+=1",
+        end: "+=300",
+        scrub: true,
+        pin: true,
+    },
+});
+
+// Animation for introSummary
+gsap.to(introSummary, {
+    text: "I am a software engineer from Las Vegas, Nevada, passionate about crafting large-scale, impactful solutions. My experience includes leading roles in significant academic projects that have impacted millions of individuals.",
+    ease: "none",
+    scrollTrigger: {
+        trigger: introSection,
+        start: "+=2",
+        end: "+=600",
+        scrub: true,
+        pin: true,
     },
 });
 
@@ -116,14 +124,95 @@ gsap.to(introTitle, {
     ease: "none", // Type of easing (none for a linear movement)
     scrollTrigger: {
         trigger: introSection,
-        start: "1", // When the top of the trigger hits the top of the viewport
-        endTrigger: aboutSection, // Element that marks the end of the scrolling effect
-        end: "top bottom", // When the bottom of the endTrigger hits the top of the viewport
-        pin: true, // Pin the trigger element
+        start: "top top", // When the top of the trigger hits the top of the viewport
+        end: "+=1200", // When the bottom of the endTrigger hits the top of the viewport
         scrub: true, // Bind the animation progress to the scroll progress
-        markers: true, // Shows markers for debugging purposes
+        // markers: true, // Shows markers for debugging purposes
     },
 });
+
+// gsap.to(introTitle, {
+//     duration: 1.2,
+//     text: {
+//         value: "Hello, I am Kelvin.",
+//     },
+//     ease: "none",
+// });
+
+// gsap.to(introSlogan, {
+//     text: {
+//         value: "I create things sometimes.",
+//     },
+//     scrollTrigger: {
+//         // trigger: introTitle,
+//         start: ">", // When the top of the trigger hits the top of the viewport
+//         end: "+=100",
+//         // endTrigger: introSection, // Element that marks the end of the scrolling effect
+//         // end: "+=100%", // When the bottom of the endTrigger hits the top of the viewport
+//         scrub: true, // Bind the animation progress to the scroll progress
+//         // pin: true,
+//         markers: true, // Shows markers for debugging purposes
+//     },
+//     // onComplete: () =>
+//     //     gsap.to(introSummary, {
+//     //         text: "I am a software engineer from Las Vegas, Nevada, passionate about crafting large-scale, impactful solutions. My experience includes leading roles in significant academic projects that have impacted millions of individuals.",
+//     //         scrollTrigger: {
+//     //             scrub: true,
+//     //             // markers: true,
+//     //         },
+//     //     }),
+// });
+
+// gsap.to(introSummary, {
+//     text: {
+//         value: "I am a software engineer from Las Vegas, Nevada, passionate about crafting large-scale, impactful solutions. My experience includes leading roles in significant academic projects that have impacted millions of individuals.",
+//     },
+//     scrollTrigger: {
+//         trigger: introSection,
+//         start: "bottom bottom",
+//         endTrigger: aboutSection, // Element that marks the end of the scrolling effect
+//         end: "top bottom", // When the bottom of the endTrigger hits the top of the viewport
+//         scrub: true, // Bind the animation progress to the scroll progress
+//         markers: true, // Shows markers for debugging purposes
+//     },
+// });
+
+
+// // Create a timeline with GSAP
+// let tl = gsap.timeline();
+
+// // Animation for introTitle
+// tl.to(introTitle, {
+//     duration: 1.2,
+//     text: {
+//         value: "Hello, I am Kelvin.",
+//     },
+//     ease: "none",
+// });
+
+// // Animation for introSlogan with onComplete callback to trigger the next animation
+// tl.to(introSlogan, {
+//     text: {
+//         value: "I create things sometimes.",
+//     },
+//     ease: "none",
+//     onComplete: startIntroSummaryAnimation
+// });
+
+// // Function to start the introSummary animation, attached to the completion of the introSlogan animation
+// function startIntroSummaryAnimation() {
+//     // Ensure this part only runs after the introSlogan animation is complete
+//     gsap.to(introSummary, {
+//         text: {
+//             value: "I am a software engineer from Las Vegas, Nevada, passionate about crafting large-scale, impactful solutions. My experience includes leading roles in significant academic projects that have touched millions of individuals.",
+//         },
+//         scrollTrigger: {
+//             pin: true,
+//             scrub: true,
+//             markers: true,
+//         },
+//     });
+// }
 
 document.querySelectorAll(".nav-link").forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
@@ -165,7 +254,6 @@ document.querySelectorAll(".nav-link").forEach((anchor) => {
 //     opacity: 1, // Ensure this is set to 1 to become fully visible at the end
 //     ease: "none",
 // }, "<"); // Use "<" to start this animation at the same time as the previous one
-
 
 // gsap.to(projectsTitle, {
 //     , // Adjust the value to control how far it slides
