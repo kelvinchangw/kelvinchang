@@ -1,6 +1,8 @@
 @import url("./assets/fonts/orbitron/orbitron-stylesheet.css");
 @import url("./assets/fonts/manrope/manrope-stylesheet.css");
 
+/* @import url("./assets/imgs/profile-pic.png"); */
+
 /* Lenis recommended CSS */
 html.lenis {
     height: auto;
@@ -239,7 +241,7 @@ header {
 }
 
 .nav-link {
-    transition: .1s ease-in-out all;
+    transition: 0.1s ease-in-out all;
 }
 
 .nav-link:hover {
@@ -278,7 +280,7 @@ header {
     justify-content: center;
     gap: 2rem;
     width: 1400px;
-    margin-bottom: 75vh;
+    margin-bottom: 100vh;
 }
 
 .intro-title {
@@ -345,6 +347,10 @@ header {
     opacity: 0;
     z-index: 1738;
     transform-origin: center;
+} */
+
+/* .profile-pic {
+    background-image: url("./assets/imgs/profile-pic.png");
 } */
 
 .about-title,
