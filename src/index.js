@@ -270,37 +270,41 @@ document.querySelectorAll(".nav-link").forEach((anchor) => {
 //     },
 // });
 
-const loadingBars = document.querySelectorAll(".loading-bar");
+    const loadingBars = document.querySelectorAll(".loading-bar");
 
-// Create a GSAP timeline
-let tl = gsap.timeline();
+    // Create a GSAP timeline
+    let tl = gsap.timeline();
 
-// Add the scaling animation for loadingBars to the timeline
-tl.fromTo(
-    loadingBars,
-    { scaleY: 0, transformOrigin: "top center" },
-    { scaleY: 1, duration: 1, ease: "power3.inOut" }
-);
+    // Add the scaling animation for loadingBars to the timeline
+    tl.fromTo(
+        loadingBars,
+        { scaleY: 0, transformOrigin: "top center" },
+        { scaleY: 1, duration: 1, ease: "power3.inOut" }
+    );
 
-// Add the box shadow animation to the timeline, set to start immediately after the scaling is complete
-tl.fromTo(
-    loadingBars,
-    { boxShadow: "0 0 0px 0 violet" },
-    { boxShadow: "0 0 12px 0 violet", duration: 0.6, ease: "power3.inOut" },
-    ">" // No additional delay, starts immediately after the previous one
-);
+    // Add the box shadow animation to the timeline, set to start immediately after the scaling is complete
+    tl.fromTo(
+        loadingBars,
+        { boxShadow: "0 0 0px 0 violet" },
+        { boxShadow: "0 0 12px 0 violet", duration: 0.6, ease: "power3.inOut" },
+        ">" // No additional delay, starts immediately after the previous one
+    );
 
-const loadingScreen = document.querySelector(".loading-screen");
+    const loadingScreen = document.querySelector(".loading-screen");
 
-tl.fromTo(
-    loadingScreen,
-    {
-        opacity: 1,
-    },
-    {
-        opacity: 0,
-        duration: 1,
-        ease: "power3.inOut",
-    },
-    ">0.6"
-);
+    tl.fromTo(
+        loadingScreen,
+        {
+            opacity: 1,
+        },
+        {
+            opacity: 0,
+            duration: 1,
+            ease: "power3.inOut",
+            userSelect: "none",
+            onComplete: () => {
+                loadingScreen.remove();
+            },
+        },
+        ">0.6"
+    );
