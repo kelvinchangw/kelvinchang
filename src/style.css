@@ -49,8 +49,11 @@ a {
 }
 
 body {
-    background-color: #060b0b;
+    background-color: black;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* overflow: hidden; */
 }
 
 ul {
@@ -156,15 +159,15 @@ li::marker {
     color: red;
 } */
 
-header {
+header {    
     padding: 2rem 4rem;
     justify-content: space-between;
     align-items: center;
     position: fixed;
-    left: 0;
-    right: 0;
-    background-color: #060b0b;
+    top: 0;
     z-index: 1738;
+    width: 100vw;
+    max-width: 1920px;
 }
 
 .tech-item {
@@ -265,7 +268,7 @@ header {
 /*  */
 #name-title {
     font-size: 3rem;
-    font-weight: 900;
+    font-weight: 600;
 }
 
 #content {
@@ -302,6 +305,7 @@ header {
     font-size: 2rem;
     height: 10rem;
     max-width: 100%;
+    text-align: center;
 }
 
 #about {
@@ -418,4 +422,21 @@ header {
 ::-webkit-scrollbar-thumb {
     background-color: wheat; /* Color of the draggable scroll handle */
     border-radius: 4px; /* Radius of the draggable scroll handle */
+}
+
+
+.loading-screen {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 46px;
+    background-color: black;
+    height: 100vh;
+    width: 100%;
+    z-index: 6666;
+}
+.loading-bar {
+    background-color: violet;
+    width: 6px;
+    height: 600px;
 }

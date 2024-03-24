@@ -66,10 +66,11 @@ gsap.ticker.lagSmoothing(0);
 //     });
 // }
 
-// Scroll to top on page load
-window.addEventListener("load", () => {
-    lenis.scrollTo(0);
-});
+// !!!!!!!!!!!!!!!!!!!!!!
+// // Scroll to top on page load
+// window.addEventListener("load", () => {
+//     lenis.scrollTo(0);
+// });
 
 // Replaces introTitle (which is an empty space) with "Hello, I am Kelvin."
 const introTitle = document.querySelector(".intro-title");
@@ -177,7 +178,6 @@ gsap.to(introTitle, {
 //     },
 // });
 
-
 // // Create a timeline with GSAP
 // let tl = gsap.timeline();
 
@@ -269,3 +269,38 @@ document.querySelectorAll(".nav-link").forEach((anchor) => {
 //         markers: true, // Shows markers for debugging purposes
 //     },
 // });
+
+const loadingBars = document.querySelectorAll(".loading-bar");
+
+// Create a GSAP timeline
+let tl = gsap.timeline();
+
+// Add the scaling animation for loadingBars to the timeline
+tl.fromTo(
+    loadingBars,
+    { scaleY: 0, transformOrigin: "top center" },
+    { scaleY: 1, duration: 1, ease: "power3.inOut" }
+);
+
+// Add the box shadow animation to the timeline, set to start immediately after the scaling is complete
+tl.fromTo(
+    loadingBars,
+    { boxShadow: "0 0 0px 0 violet" },
+    { boxShadow: "0 0 12px 0 violet", duration: 0.6, ease: "power3.inOut" },
+    ">" // No additional delay, starts immediately after the previous one
+);
+
+const loadingScreen = document.querySelector(".loading-screen");
+
+tl.fromTo(
+    loadingScreen,
+    {
+        opacity: 1,
+    },
+    {
+        opacity: 0,
+        duration: 1,
+        ease: "power3.inOut",
+    },
+    ">0.6"
+);
