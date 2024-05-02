@@ -1,23 +1,125 @@
 // IMPORTS
-import "./style.css";
+import "./style.css"; // Import CSS file
+import * as THREE from "three"; // Import the Three.js library
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader.js"; // Import GLTFLoader for loading 3D models
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js"; // Import OrbitControls for camera movement
+import { EffectComposer } from "three/examples/jsm/postprocessing/EffectComposer.js"; // Import EffectComposer for post-processing effects
+import { RenderPass } from "three/examples/jsm/postprocessing/RenderPass.js"; // Import RenderPass for rendering passes
+import { UnrealBloomPass } from "three/examples/jsm/postprocessing/UnrealBloomPass.js"; // Import UnrealBloomPass for bloom effect
 
-// Lenis Smooth Scroll
+// Setup the scene, camera, and renderer
+const scene = new THREE.Scene(); // Create a new Three.js scene
+const camera = new THREE.PerspectiveCamera(75, getAspectRatio(), 0.1, 1000); // Create a perspective camera
+
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true }); // Create a WebGL renderer with antialiasing and alpha transparency
+scene.background = null;
+setRendererSize(); // Set initial renderer size
+renderer.toneMapping = THREE.ReinhardToneMapping; // Set tone mapping for renderer
+document.body.appendChild(renderer.domElement); // Append renderer canvas element to document body
+
+// Function to calculate the correct aspect ratio accounting for scrollbar width
+function getAspectRatio() {
+    const scrollbarWidth = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--scrollbar-width'));
+    return (window.innerWidth - scrollbarWidth) / window.innerHeight;
+}
+
+// Function to set renderer size accounting for scrollbar width
+function setRendererSize() {
+    const scrollbarWidth = parseFloat(getComputedStyle(document.documentElement).getPropertyValue('--scrollbar-width'));
+    renderer.setSize(window.innerWidth - scrollbarWidth, window.innerHeight);
+}
+
+// Responsive canvas resizing
+function onWindowResize() {
+    camera.aspect = getAspectRatio(); // Update camera aspect ratio
+    camera.updateProjectionMatrix(); // Update the projection matrix
+    setRendererSize(); // Update renderer size
+}
+window.addEventListener('resize', onWindowResize, false); // Add resize event listener
+
+// Add dynamic lighting
+const ambientLight = new THREE.AmbientLight(0x404040, 2); // Create ambient light with soft white color and intensity 2
+scene.add(ambientLight); // Add ambient light to the scene
+
+const pointLight = new THREE.PointLight(0xffffff, 1, 100); // Create a point light with white color, intensity 1, and distance 100
+pointLight.position.set(10, 10, 10); // Set position of point light
+scene.add(pointLight); // Add point light to the scene
+
+// Initialize the GLTF loader
+const loader = new GLTFLoader(); // Create a GLTF loader instance
+let model, mixer; // Initialize variables to hold model and animation mixer reference
+
+loader.load(
+    "./assets/a_windy_day/scene.gltf", // Path to the GLTF model file
+    function (gltf) { // called when the resource is loaded
+        model = gltf.scene; // Get the loaded 3D model scene
+        scene.add(model); // Add the model to the scene
+        model.scale.set(20, 20, 20); // Scale the model down
+        model.position.set(0, -10, 0); // Adjust the position as needed
+
+        model.traverse((child) => { // Traverse through all child objects of the model
+            if (child.isMesh) { // Check if the child is a mesh
+                child.material.transparent = true; // Make the material transparent
+                child.material.alphaTest = 0.5; // Set alpha test value
+            }
+        });
+
+        const box = new THREE.Box3().setFromObject(model); // Create bounding box from the model
+        const center = box.getCenter(new THREE.Vector3()); // Get center of the bounding box
+
+        controls.target.copy(center); // Set control target
+
+        mixer = new THREE.AnimationMixer(model); // Create an animation mixer for the model
+        gltf.animations.forEach((clip) => { // Iterate over all animations in the GLTF file
+            const action = mixer.clipAction(clip); // Create an action for each animation clip
+            action.setLoop(THREE.LoopRepeat); // Set looping for the animation
+            action.play(); // Start playing the animation
+        });
+
+        const composer = new EffectComposer(renderer); // Create an instance of EffectComposer
+        composer.addPass(new RenderPass(scene, camera)); // Add RenderPass to composer
+
+        const bloomPass = new UnrealBloomPass(
+            new THREE.Vector2(window.innerWidth, window.innerHeight), // Pass render size to bloom pass
+            1.5, // Strength
+            0.4, // Kernel size
+            0.85 // Sigma
+        );
+        bloomPass.threshold = 0.1; // Set bloom threshold
+        bloomPass.strength = 6; // Set bloom strength
+        bloomPass.radius = 1; // Set bloom radius
+        composer.addPass(bloomPass); // Add bloom pass to composer
+
+        renderer.setAnimationLoop(() => {
+            renderer.clear();
+            controls.update();
+            model.rotation.y += 0.0005;
+            composer.render();
+        });
+    },
+    function (xhr) { // called while loading is progressing
+        console.log((xhr.loaded / xhr.total) * 100 + "% loaded");
+    },
+    function (error) { // called when loading has errors
+        console.error("An error happened", error);
+    }
+);
+
+const controls = new OrbitControls(camera, renderer.domElement); // Create OrbitControls instance
+camera.position.z = 50; // Set camera position
+controls.enableDamping = true; // Enable damping for smoother camera movement
+controls.dampingFactor = 0.1; // Set damping factor
+
+// GSAP and Lenis for smooth scrolling and animations
 import Lenis from "@studio-freight/lenis";
-
-// Free version of GSAP's Scramble Text like text shuffle effect
-// https://www.npmjs.com/package/scramble-text
 import ScrambleText from "scramble-text";
-
-// GSAP ScrollTrigger
 import { gsap } from "gsap";
-
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { TextPlugin } from "gsap/TextPlugin";
 import { ScrollToPlugin } from "gsap/ScrollToPlugin";
 
 gsap.registerPlugin(ScrollTrigger, TextPlugin, ScrollToPlugin);
 
-// Lenis + GSAP ScrollTrigger
 const lenis = new Lenis({
     duration: 1.2,
     wheelMultiplier: 1,
@@ -29,190 +131,13 @@ lenis.on("scroll", (e) => {
 
 lenis.on("scroll", ScrollTrigger.update);
 
-// lenis.on("scroll", ScrollTrigger.refresh);
-
 gsap.ticker.add((time) => {
     lenis.raf(time * 1000);
 });
-
 gsap.ticker.lagSmoothing(0);
-
-// introLink.addEventListener("click", () => {
-//     lenis.scrollTo("#intro");
-// });
-
-// DYNAMIC UPDATES OF STUFF BELOW
-// https://gsap.com/community/forums/topic/37417-disabling-scrolltrigger-onleave-and-re-enabling-onleaveback/
-
-// ScrollTrigger.create({
-//     trigger: introTitle,
-//     start: "top 46%", // Trigger point
-//     end: "top top", // Define an end point to ensure onLeaveBack is called
-//     markers: true, // For debugging, remove in production
-//     toggleActions: "play none none none", // Adjust if needed
-//     onEnter: () => updateText("Hello, I am Kelvin."), // Text for scrolling down through 50%
-//     onLeaveBack: () => updateText("KELVIN KELVIN KELVIN"), // Text for scrolling back up through 50%
-//     // Optional: Adjust based on your needs
-//     onEnterBack: () => updateText("Original Text"),
-//     onLeave: () => updateText("Another Text"),
-// });
-
-// // Function to update text
-// function updateText(newText) {
-//     gsap.to(introTitle, {
-//         duration: 2,
-//         text: { value: newText },
-//         ease: "none", // Customize the easing if needed
-//     });
-// }
-
-// !!!!!!!!!!!!!!!!!!!!!!
-// // Scroll to top on page load
-// window.addEventListener("load", () => {
-//     lenis.scrollTo(0);
-// });
-
-// Replaces introTitle (which is an empty space) with "Hello, I am Kelvin."
-const introTitle = document.querySelector(".intro-title");
-const introSlogan = document.querySelector(".intro-slogan");
-const introSummary = document.querySelector(".intro-summary");
 
 const introSection = document.querySelector("#intro");
 const aboutSection = document.querySelector("#about");
-
-// Animation for introTitle
-gsap.to(introTitle, {
-    text: "Hello, I am Kelvin.",
-    ease: "none",
-    scrollTrigger: {
-        trigger: introSection,
-        start: "top top",
-        end: "+=300",
-        scrub: true,
-        pin: true,
-    },
-});
-
-// Animation for introSlogan
-gsap.to(introSlogan, {
-    text: "I create things sometimes.",
-    ease: "none",
-    scrollTrigger: {
-        trigger: introSection,
-        start: "+=1",
-        end: "+=300",
-        scrub: true,
-        pin: true,
-    },
-});
-
-// Animation for introSummary
-gsap.to(introSummary, {
-    text: "I am a software engineer from Las Vegas, Nevada, passionate about crafting large-scale, impactful solutions. My experience includes leading roles in significant academic projects that have impacted millions of individuals.",
-    ease: "none",
-    scrollTrigger: {
-        trigger: introSection,
-        start: "+=2",
-        end: "+=600",
-        scrub: true,
-        pin: true,
-    },
-});
-
-gsap.to(introTitle, {
-    // Must use hex code, if using "wheat", the duration will be ignored
-    color: "#EE82EE",
-    ease: "none", // Type of easing (none for a linear movement)
-    scrollTrigger: {
-        trigger: introSection,
-        start: "top top", // When the top of the trigger hits the top of the viewport
-        end: "+=1200", // When the bottom of the endTrigger hits the top of the viewport
-        scrub: true, // Bind the animation progress to the scroll progress
-        // markers: true, // Shows markers for debugging purposes
-    },
-});
-
-// gsap.to(introTitle, {
-//     duration: 1.2,
-//     text: {
-//         value: "Hello, I am Kelvin.",
-//     },
-//     ease: "none",
-// });
-
-// gsap.to(introSlogan, {
-//     text: {
-//         value: "I create things sometimes.",
-//     },
-//     scrollTrigger: {
-//         // trigger: introTitle,
-//         start: ">", // When the top of the trigger hits the top of the viewport
-//         end: "+=100",
-//         // endTrigger: introSection, // Element that marks the end of the scrolling effect
-//         // end: "+=100%", // When the bottom of the endTrigger hits the top of the viewport
-//         scrub: true, // Bind the animation progress to the scroll progress
-//         // pin: true,
-//         markers: true, // Shows markers for debugging purposes
-//     },
-//     // onComplete: () =>
-//     //     gsap.to(introSummary, {
-//     //         text: "I am a software engineer from Las Vegas, Nevada, passionate about crafting large-scale, impactful solutions. My experience includes leading roles in significant academic projects that have impacted millions of individuals.",
-//     //         scrollTrigger: {
-//     //             scrub: true,
-//     //             // markers: true,
-//     //         },
-//     //     }),
-// });
-
-// gsap.to(introSummary, {
-//     text: {
-//         value: "I am a software engineer from Las Vegas, Nevada, passionate about crafting large-scale, impactful solutions. My experience includes leading roles in significant academic projects that have impacted millions of individuals.",
-//     },
-//     scrollTrigger: {
-//         trigger: introSection,
-//         start: "bottom bottom",
-//         endTrigger: aboutSection, // Element that marks the end of the scrolling effect
-//         end: "top bottom", // When the bottom of the endTrigger hits the top of the viewport
-//         scrub: true, // Bind the animation progress to the scroll progress
-//         markers: true, // Shows markers for debugging purposes
-//     },
-// });
-
-// // Create a timeline with GSAP
-// let tl = gsap.timeline();
-
-// // Animation for introTitle
-// tl.to(introTitle, {
-//     duration: 1.2,
-//     text: {
-//         value: "Hello, I am Kelvin.",
-//     },
-//     ease: "none",
-// });
-
-// // Animation for introSlogan with onComplete callback to trigger the next animation
-// tl.to(introSlogan, {
-//     text: {
-//         value: "I create things sometimes.",
-//     },
-//     ease: "none",
-//     onComplete: startIntroSummaryAnimation
-// });
-
-// // Function to start the introSummary animation, attached to the completion of the introSlogan animation
-// function startIntroSummaryAnimation() {
-//     // Ensure this part only runs after the introSlogan animation is complete
-//     gsap.to(introSummary, {
-//         text: {
-//             value: "I am a software engineer from Las Vegas, Nevada, passionate about crafting large-scale, impactful solutions. My experience includes leading roles in significant academic projects that have touched millions of individuals.",
-//         },
-//         scrollTrigger: {
-//             pin: true,
-//             scrub: true,
-//             markers: true,
-//         },
-//     });
-// }
 
 document.querySelectorAll(".nav-link").forEach((anchor) => {
     anchor.addEventListener("click", function (e) {
@@ -221,90 +146,37 @@ document.querySelectorAll(".nav-link").forEach((anchor) => {
     });
 });
 
-// PROJECTS TITLE ZOOM GRADIENT EFFECT
-// const projectsSection = document.querySelector("#projects");
-// const projectsTitle = document.querySelector(".projects-title");
-// const projectsTitleOverlay = document.querySelector(".projects-title-overlay");
-// const contactSection = document.querySelector("#contact");
-// const copyrightSection = document.querySelector("#copyright");
+const loadingBars = document.querySelectorAll(".loading-bar");
+let tl = gsap.timeline();
 
-// // Create a GSAP timeline with scrollTrigger
-// const projectsTitleAnimation = gsap.timeline({
-//     scrollTrigger: {
-//         trigger: projectsSection,
-//         start: "top top",
-//         endTrigger: contactSection,
-//         end: "top bottom",
-//         pin: true,
-//         scrub: true,
-//         markers: true,
-//     }
-// });
+tl.fromTo(
+    loadingBars,
+    { scaleY: 0, height: "0%", transformOrigin: "top center" },
+    { scaleY: 1, height: "100%", duration: 1, ease: "power3.inOut" }
+);
 
-// // Add animation for projectsTitle to the timeline
-// projectsTitleAnimation.to(projectsTitle, {
-//     scale: 4,
-//     opacity: 0,
-//     ease: "none",
-// });
+tl.fromTo(
+    loadingBars,
+    { boxShadow: "0 0 0px 0 violet" },
+    { boxShadow: "0 0 18px 0 violet", duration: 0.8, ease: "power3.inOut" },
+    ">" // No additional delay, starts immediately after the previous one
+);
 
-// // Add animation for projectsTitleOverlay to the timeline
-// projectsTitleAnimation.to(projectsTitleOverlay, {
-//     scale: 4,
-//     opacity: 1, // Ensure this is set to 1 to become fully visible at the end
-//     ease: "none",
-// }, "<"); // Use "<" to start this animation at the same time as the previous one
+const loadingScreen = document.querySelector(".loading-screen");
 
-// gsap.to(projectsTitle, {
-//     , // Adjust the value to control how far it slides
-//     opacity: 1,
-//     ease: "none", // Type of easing (none for a linear movement)
-//     scrollTrigger: {
-//         trigger: contactSection,
-//         start: "top bottom", // When the top of the trigger hits the top of the viewport
-//         endTrigger: , // Element that marks the end of the scrolling effect
-//         end: "top bottom", // When the bottom of the endTrigger hits the top of the viewport
-//         pin: true, // Pin the trigger element
-//         scrub: true, // Bind the animation progress to the scroll progress
-//         markers: true, // Shows markers for debugging purposes
-//     },
-// });
-
-    const loadingBars = document.querySelectorAll(".loading-bar");
-
-    // Create a GSAP timeline
-    let tl = gsap.timeline();
-
-    // Add the scaling animation for loadingBars to the timeline
-    tl.fromTo(
-        loadingBars,
-        { scaleY: 0, transformOrigin: "top center" },
-        { scaleY: 1, duration: 1, ease: "power3.inOut" }
-    );
-
-    // Add the box shadow animation to the timeline, set to start immediately after the scaling is complete
-    tl.fromTo(
-        loadingBars,
-        { boxShadow: "0 0 0px 0 violet" },
-        { boxShadow: "0 0 12px 0 violet", duration: 0.6, ease: "power3.inOut" },
-        ">" // No additional delay, starts immediately after the previous one
-    );
-
-    const loadingScreen = document.querySelector(".loading-screen");
-
-    tl.fromTo(
-        loadingScreen,
-        {
-            opacity: 1,
+tl.fromTo(
+    loadingScreen,
+    {
+        opacity: 1,
+    },
+    {
+        opacity: 0,
+        duration: 1,
+        ease: "power3.inOut",
+        userSelect: "none",
+        onComplete: () => {
+            loadingScreen.remove();
         },
-        {
-            opacity: 0,
-            duration: 1,
-            ease: "power3.inOut",
-            userSelect: "none",
-            onComplete: () => {
-                loadingScreen.remove();
-            },
-        },
-        ">0.6"
-    );
+    },
+    ">0.6"
+);

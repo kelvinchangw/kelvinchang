@@ -1,7 +1,32 @@
 @import url("./assets/fonts/orbitron/orbitron-stylesheet.css");
 @import url("./assets/fonts/manrope/manrope-stylesheet.css");
+@import url("./assets/fonts/neopixel/neopixel-stylesheet.css");
+@import url("./assets/fonts/lexa/lexa-stylesheet.css");
+@import url("./assets/fonts/lab-grotesk/lab-grotesk-stylesheet.css");
+@import url("./assets/fonts/angular/stylesheet.css");
 
 /* @import url("./assets/imgs/profile-pic.png"); */
+
+
+/* DEV */
+canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: calc(100vw - var(--scrollbar-width));
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Font weights messes with certain custom fonts */
+
+::selection {
+    color: white;
+    background: gray;
+}
+  
 
 /* Lenis recommended CSS */
 html.lenis {
@@ -41,7 +66,14 @@ html.lenis {
     box-sizing: border-box;
     color: wheat;
 
-    font-family: "Manrope", sans-serif;
+    font-weight: normal;
+    /* font-family: "NEOPIXEL", sans-serif; */
+    font-family: sans-serif;
+    text-rendering: optimizeLegibility;
+}
+
+html {
+    background-color: black;
 }
 
 a {
@@ -49,7 +81,6 @@ a {
 }
 
 body {
-    background-color: black;
     flex-direction: column;
     justify-content: center;
     align-items: center;
@@ -166,7 +197,7 @@ header {
     align-items: center;
     position: fixed;
     top: 0;
-    z-index: 1738;
+    z-index: 3;
     width: 100vw;
     max-width: 1920px;
 }
@@ -236,11 +267,11 @@ header {
 }
 
 .nav-links {
-    gap: 2rem;
+    gap: 2.6rem;
 }
 
 .nav-links a {
-    font-size: 1.6rem;
+    font-size: 1.3rem;
     font-weight: 400;
 }
 
@@ -269,7 +300,7 @@ header {
 /*  */
 #name-title {
     font-size: 3rem;
-    font-weight: 600;
+    /* font-weight: 600; */
 }
 
 #content {
@@ -282,29 +313,27 @@ header {
 #intro {
     flex-direction: column;
     justify-content: center;
-    gap: 2rem;
+    gap: 20rem;
     width: 1400px;
-    margin-bottom: 100vh;
+    background-color: transparent;
+    z-index: 2;
 }
 
 .intro-title {
-    align-self: center;
+    align-self: flex-start;
     font-size: 6rem;
-    height: 10rem;
     max-width: 100%;
 }
 
 .intro-slogan {
-    align-self: center;
+    align-self: flex-end;
     font-size: 3rem;
-    height: 10rem;
     max-width: 100%;
 }
 
 .intro-summary {
     align-self: center;
     font-size: 2rem;
-    height: 10rem;
     max-width: 100%;
     text-align: center;
 }
@@ -436,10 +465,16 @@ header {
     background-color: black;
     height: 100vh;
     width: 100%;
-    z-index: 6666;
+    z-index: 5;
+}
+.loading-bar-container {
+    width: 6px;
+    height: 600px;
 }
 .loading-bar {
     background-color: violet;
-    width: 6px;
-    height: 600px;
+}
+
+.copyright-symbol {
+    height: 2.4rem;
 }

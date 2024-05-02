@@ -7,9 +7,15 @@
     </head>
 
     <div class="loading-screen">
-        <div class="loading-bar"></div>
-        <div class="loading-bar"></div>
-        <div class="loading-bar"></div>
+        <div class="loading-bar-container">
+            <div class="loading-bar"></div>
+        </div>
+        <div class="loading-bar-container">
+            <div class="loading-bar"></div>
+        </div>
+        <div class="loading-bar-container">
+            <div class="loading-bar"></div>
+        </div>
     </div>
 
     <body class="container" id="top">
@@ -28,9 +34,9 @@
 
         <div id="content" class="container">
             <div id="intro" class="container">
-                <h2 class="intro-title"></h2>
-                <h3 class="intro-slogan"></h3>
-                <p class="intro-summary"></p>
+                <canvas id="canvas-container"></canvas>
+                <h2 class="intro-title">Kelvin Chang</h2>
+                <h3 class="intro-slogan">Developer & Designer.</h3>
             </div>
 
             <div id="about" class="container">
@@ -325,7 +331,9 @@
         <footer class="container">
             <div id="copyright" class="container">
                 <span id="dev-info">Built and designed by Kelvin Chang.</span>
-                <span id="copyright-info">All rights reserved. ©</span>
+                <span id="copyright-info">All rights reserved.
+                    <!-- <img src="./assets/imgs/copyright-symbol.svg" alt="" class="copyright-symbol"> -->
+                </span>
             </div>
         </footer>
     </body>
