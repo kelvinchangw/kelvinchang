@@ -6,6 +6,7 @@
         "mini-css-extract-plugin": "^2.8.1",
         "style-loader": "^3.3.4",
         "url-loader": "^4.1.1",
+        "vite": "^5.2.10",
         "webpack": "^5.90.2",
         "webpack-cli": "^5.1.4",
         "webpack-dev-server": "^5.0.2"
@@ -18,6 +19,8 @@
     "dependencies": {
         "@studio-freight/lenis": "^1.0.35",
         "gsap": "^3.12.5",
-        "scramble-text": "^0.0.9"
+        "postprocessing": "^6.35.4",
+        "scramble-text": "^0.0.9",
+        "three": "^0.164.1"
     }
 }

@@ -27,6 +27,7 @@ module.exports = {
                 use: ["html-loader"],
             },
             {
+                // Prevent FOUC using Mini Css Extract
                 test: /\.css$/i,
                 use: [MiniCssExtractPlugin.loader, "css-loader"],
             },
