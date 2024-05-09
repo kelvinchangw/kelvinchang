@@ -38,12 +38,11 @@ export const setupGSAPAnimations = () => {
     });
 
     const rootStyle = getComputedStyle(document.documentElement);
-    const purpleColor = rootStyle.getPropertyValue('--clr-purple').trim();
 
     const loadingBars = document.querySelectorAll(".loading-bar");
     let tl = gsap.timeline();
     tl.fromTo(loadingBars, { scaleY: 0, height: "0%", transformOrigin: "top center" }, { scaleY: 1, height: "100%", duration: 1, ease: "power3.inOut" });
-    tl.fromTo(loadingBars, { boxShadow: "0 0 0px 0" }, { boxShadow: `0 0 32px 2px ${purpleColor}`, duration: 0.8, ease: "power3.inOut" }, ">");
+    tl.fromTo(loadingBars, { boxShadow: "0 0 0px 0" }, { boxShadow: `0 0 32px 2px #7416e9`, duration: 0.8, ease: "power3.inOut" }, ">");
 
     const loadingScreen = document.querySelector(".loading-screen");
     tl.fromTo(loadingScreen, { opacity: 1 }, {
