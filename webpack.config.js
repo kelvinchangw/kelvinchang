@@ -23,7 +23,7 @@ module.exports = {
     ],
     devServer: {
         static: {
-            directory: path.resolve(__dirname, "dist"),
+            directory: path.resolve(__dirname, "src"),
         },
         port: 9000,
     },
