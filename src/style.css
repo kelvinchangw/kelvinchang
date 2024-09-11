@@ -182,3 +182,54 @@ body {
 .bot > div {
     gap: 6rem;
 }
+
+/* Mobile Styles */
+@media only screen and (max-width: 600px) {
+    .content {
+        max-width: 430px;
+        width: auto;
+        padding: 2rem;
+        gap: 3rem;
+    }
+    
+    .mid {
+        gap: 2rem;
+    }
+
+    .edge {
+        width: 6px;
+        height: 6px;
+    }
+    
+    .hori-line {
+        width: 48px;
+        height: 2px;
+    }
+    
+    .diag-line {
+        width: 32px;
+        height: 50px;
+    }
+    
+    .rect {
+        width: 4px;
+        height: 4px;
+    }    
+
+    #kc-logo {
+        width: 80px;
+        height: auto;
+    }
+    
+    .text {
+        font-size: 2rem;
+    }
+
+    .top > div {
+        gap: 2rem;
+    }
+    
+    .bot > div {
+        gap: 2rem;
+    }
+}
