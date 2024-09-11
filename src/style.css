@@ -107,6 +107,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    overflow: hidden;
 }
 
 .content {
@@ -188,6 +189,7 @@ body {
     .content {
         max-width: 430px;
         width: auto;
+        height: auto;
         padding: 2rem;
         gap: 3rem;
     }
