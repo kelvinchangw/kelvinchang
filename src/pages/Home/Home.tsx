@@ -1,5 +1,5 @@
 import styles from "./Home.module.css";
-import landingPageImg from "../../assets/images/landing-page-img-splatter.png";
+import landingPageImg from "../../assets/images/landing-page-img-splatter.jpg";
 
 export default function Home() {
     return (
