@@ -1,0 +1,36 @@
+.content {
+    gap: 1rem;
+}
+
+.imgContainer {
+    display: flex;
+}
+
+.landingPageImg {
+    width: 100%;
+    border-radius: 32px;
+}
+
+.quoteContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.quoteContainer:first-child {
+    justify-content: flex-start;
+}
+
+.quoteContainer:last-child {
+    justify-content: flex-end;
+}
+
+.quoteContainer:last-child > span {
+    text-align: end;
+}
+
+@media (max-width: 480px) {
+    .content {
+        padding: 4rem 1rem;
+    }
+}

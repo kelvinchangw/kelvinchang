@@ -1,0 +1,19 @@
+:root {
+    /* Stable */
+    --color-background: #0A0A0A;
+    --color-text: #FFFAF0;
+
+    --color-menuBar-background: #161616;
+    --color-hover: #323232;
+    --color-selected: #8000FF;
+
+    --color-project-online: #00FF09;
+    --color-project-dev: #F5D322;
+    
+    /* Dev */
+
+    /* Screen breakpoints */
+    /* --mobile-breakpoint: 480px; */
+    /* --tablet-breakpoint: 768px; */
+    /* --desktop-breakpoint: 1024px; */
+}

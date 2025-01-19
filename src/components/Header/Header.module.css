@@ -1,0 +1,36 @@
+@import "../../styles/variables.css";
+
+.header {
+    display: flex;
+    padding: 4rem;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.logoContainer {
+    height: 2rem;
+    display: flex;
+}
+
+.logoImg {
+    width: auto;
+    height: 100%;
+}
+
+.systemStatus {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
+}
+
+.status {
+    width: 1rem;
+    height: 1rem;
+}
+
+@media (max-width: 480px) {
+    .header {
+        padding: 10rem 1rem 0 1rem;
+    }
+}

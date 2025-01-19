@@ -1,0 +1,91 @@
+@font-face {
+    font-family: "Space Mono";
+    src: url("../assets/fonts/space-mono/SpaceMono-Regular.ttf");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Space Mono";
+    src: url("../assets/fonts/space-mono/SpaceMono-Bold.ttf");
+    font-weight: 700;
+}
+
+/* Scrollbar */
+/* Width */
+::-webkit-scrollbar {
+    width: 0.5rem;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: var(--color-background);
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    border-radius: 32px;
+    background: var(--color-selected);
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: #6c00d8;
+}
+
+html {
+    font-size: 16px;
+    overflow-y: overlay; /* Modern browsers */
+    scrollbar-gutter: stable; /* Reserves space for scrollbar */
+}
+
+body {
+    margin: 0;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: "Space Mono", sans-serif;
+    line-height: 1.5rem;
+}
+
+a {
+    color: inherit;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+    max-width: 1440px;
+    min-height: 100vh;
+    width: 100%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+    padding: 0 4rem;
+    gap: 4rem;
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+
+    .pageContainer {
+        /* Dunno what value */
+        gap: 4rem;
+    }
+
+    main {
+        padding: 0 1rem;
+    }
+}

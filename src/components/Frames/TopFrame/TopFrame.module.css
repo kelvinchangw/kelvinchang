@@ -1,0 +1,35 @@
+.topFrame {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 4rem;
+}
+
+@media (max-width: 480px) {
+    .topFrame {
+        padding: 1rem 0;
+        gap: 0;
+        width: 100%;
+        justify-content: space-between;
+    }
+
+    .tlRect,
+    .trRect {
+        height: 0.5rem;
+    }
+
+    .horLine {
+        width: 8rem;
+        height: 0.125rem;
+    }
+
+    .vbLogo {
+        height: 1.5rem;
+    }
+
+    .topFrame > .horLine:nth-of-type(2),
+    .topFrame > .horLine:nth-of-type(8),
+    .rect {
+        display: none;
+    }
+}

@@ -1,39 +1,49 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import Welcome from "./components/Welcome";
+// Import components
+import Home from "./pages/Home/Home";
+import Projects from "./pages/Projects/Projects";
+import About from "./pages/About/About";
+
+// Import projects
+import ProjectNoir from "./pages/Projects/ProjectNoir/ProjectNoir";
+
+import MenuBar from "./components/MenuBar/MenuBar";
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+import TitleManager from "./components/TitleManager";
+
+// Import hooks
+import useLenis from "./hooks/useLenis";
+
+// Import styles
+import "./styles/variables.css";
+import "./styles/global.css";
 
 function App() {
-  const [count, setCount] = useState(0)
+    useLenis();
 
-  return (
-    <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      {/* Call function */}
-      <Welcome/>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    return (
+        <BrowserRouter>
+            <TitleManager />
+
+            {/* Persistent menu bar */}
+            <MenuBar />
+
+            <div className="pageContainer">
+                {/* Header will go here later */}
+                <Header />
+                <Routes>
+                    <Route path="/" element={<Home />} />
+                    <Route path="/about" element={<About />} />
+                    <Route path="/projects" element={<Projects />} />
+                    <Route path="/projects/project-noir" element={<ProjectNoir />} /> {/* Add this line */}
+                </Routes>
+                {/* Footer will go here later */}
+                <Footer />
+            </div>
+        </BrowserRouter>
+    );
 }
 
-export default App
+export default App;
