@@ -33,11 +33,11 @@ export default function Projects() {
                                     ONLINE
                                 </span>
                             </div>
-                            <div className={styles.description}>
+                            <p className={styles.description}>
                                 "From distance eternal come black wings o'er the
                                 land. Feathers fall, bringing ruin. Only white
                                 wings may silence its echoes of arrival."
-                            </div>
+                            </p>
                         </div>
                     </div>
                 </Link>
@@ -60,7 +60,7 @@ export default function Projects() {
                                 DEV
                             </span>
                         </div>
-                        <div className={styles.description}></div>
+                        {/* <div className={styles.description}></div> */}
                     </div>
                 </div>
             </div>

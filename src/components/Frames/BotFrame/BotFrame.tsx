@@ -7,15 +7,15 @@ import rect from "../../../assets/images/rect.png";
 export default function BotFrame() {
     return (
         <div className={styles.botFrame}>
-            <img src={blRect} alt="" />
-            <img src={horLine} alt="" />
-            <img src={horLine} alt="" />
-            <img src={rect} alt="" />
-            <img src={rect} alt="" />
-            <img src={rect} alt="" />
-            <img src={horLine} alt="" />
-            <img src={horLine} alt="" />
-            <img src={brRect} alt="" />
+            <img src={blRect} className={styles.blRect} alt="" />
+            <img src={horLine} className={styles.horLine} alt="" />
+            <img src={horLine} className={styles.horLine} alt="" />
+            <img src={rect} className={styles.rect} alt="" />
+            <img src={rect} className={styles.rect} alt="" />
+            <img src={rect} className={styles.rect} alt="" />
+            <img src={horLine} className={styles.horLine} alt="" />
+            <img src={horLine} className={styles.horLine} alt="" />
+            <img src={brRect} className={styles.brRect} alt="" />
         </div>
     );
 }

@@ -37,3 +37,9 @@
 .navLink.active {
     background-color: var(--color-selected);
 }
+
+@media (max-width: 480px) {
+    .menuBarWrapper {
+        top: 1rem;
+    }
+}

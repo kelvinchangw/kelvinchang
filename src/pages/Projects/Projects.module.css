@@ -1,7 +1,3 @@
-.page {
-    gap: 4rem;
-}
-
 .content {
     display: flex;
     flex-direction: column;
@@ -11,7 +7,7 @@
 .project {
     display: flex;
     flex-direction: row;
-    width: 800px;
+    width: 50rem;
     gap: 2rem;
     transition: ease-out all 0.1s;
     padding: 1rem;
@@ -22,8 +18,8 @@
 }
 
 .thumbnailContainer {
-    width: 360px;
-    height: 200px;
+    width: 22rem;
+    height: 12rem;
     flex-shrink: 0;
     border: white 2px solid;
 }
@@ -38,7 +34,7 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    width: 100%
+    width: 100%;
 }
 
 .heading {
@@ -75,4 +71,23 @@
 
 .devStatus {
     background-color: var(--color-project-dev);
+}
+
+@media (max-width: 480px) {
+    .content {
+        gap: 4rem;
+    }
+
+    .project {
+        flex-direction: column;
+        align-items: center;
+        width: auto;
+    }
+
+    .thumbnailContainer {
+        width: 100%;
+        height: 16rem;
+        flex-shrink: 0;
+        border: white 2px solid;
+    }
 }

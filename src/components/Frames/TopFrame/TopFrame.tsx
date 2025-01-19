@@ -8,15 +8,15 @@ import vbLogo from "../../../assets/images/vb-logo.png";
 export default function TopFrame() {
     return (
         <div className={styles.topFrame}>
-            <img src={tlRect} alt="" />
-            <img src={horLine} alt="" />
-            <img src={rect} alt="" />
-            <img src={horLine} alt="" />
-            <img src={vbLogo} alt="" />
-            <img src={horLine} alt="" />
-            <img src={rect} alt="" />
-            <img src={horLine} alt="" />
-            <img src={trRect} alt="" />
+            <img src={tlRect} className={styles.tlRect} alt="" />
+            <img src={horLine} className={styles.horLine} alt="" />
+            <img src={rect} className={styles.rect} alt="" />
+            <img src={horLine} className={styles.horLine} alt="" />
+            <img src={vbLogo} className={styles.vbLogo} alt="" />
+            <img src={horLine} className={styles.horLine} alt="" />
+            <img src={rect} className={styles.rect} alt="" />
+            <img src={horLine} className={styles.horLine} alt="" />
+            <img src={trRect} className={styles.trRect} alt="" />
         </div>
     );
 }

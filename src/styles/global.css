@@ -49,4 +49,21 @@ main {
     flex-direction: column;
     align-items: center;
     flex: 1;
+    padding: 0 4rem;
+    gap: 4rem;
+}
+
+@media (max-width: 480px) {
+    html {
+        font-size: 14px;
+    }
+
+    .pageContainer {
+        /* Dunno what value */
+        gap: 4rem;
+    }
+
+    main {
+        padding: 0 1rem;
+    }
 }
