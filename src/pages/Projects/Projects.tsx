@@ -1,6 +1,6 @@
 import styles from "./Projects.module.css";
-import noirThumbnail from "../../assets/images/project-noir-thumbnail.png";
-import projectPlaceholder from "../../assets/images/project-placeholder.png";
+import noirThumbnail from "../../assets/images/project-noir-thumbnail.jpg";
+import projectPlaceholder from "../../assets/images/project-placeholder.jpg";
 import TopFrame from "../../components/Frames/TopFrame/TopFrame";
 import BotFrame from "../../components/Frames/BotFrame/BotFrame";
 import { Link } from "react-router-dom";

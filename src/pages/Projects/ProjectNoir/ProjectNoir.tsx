@@ -1,7 +1,7 @@
 import styles from "./ProjectNoir.module.css";
 import TopFrame from "../../../components/Frames/TopFrame/TopFrame";
 import BotFrame from "../../../components/Frames/BotFrame/BotFrame";
-import noirThumbnail from "../../../assets/images/project-noir-thumbnail.png";
+import noirThumbnail from "../../../assets/images/project-noir-thumbnail.jpg";
 import divider from "../../../assets/images/divider.png";
 
 export default function ProjectNoir() {
