@@ -1,0 +1,21 @@
+.content {
+    gap: 1rem;
+}
+
+.landingPageImg {
+    border-radius: 32px;
+}
+
+.quoteContainer {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+}
+
+.quoteContainer:first-child {
+    justify-content: flex-start;
+}
+
+.quoteContainer:last-child {
+    justify-content: flex-end;
+}

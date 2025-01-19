@@ -1,0 +1,39 @@
+@import "../../styles/variables.css";
+
+.menuBarWrapper {
+    position: fixed;
+    top: 3rem;
+    display: flex;
+    justify-content: center;
+    z-index: 999;
+}
+
+.menuBar {
+    background-color: var(--color-menuBar-background);
+    border-radius: 32px;
+}
+
+.nav {
+    display: flex;
+    gap: 1rem;
+    padding: 1rem;
+    width: fit-content;
+}
+
+.navLink {
+    text-decoration: none;
+    color: var(--color-text);
+    font-size: 1rem;
+    padding: 0.5rem 1rem;
+    border-radius: 32px;
+    border: 2px solid var(--color-selected);
+    transition: ease-out all 0.1s;
+}
+
+.navLink:hover {
+    background-color: var(--color-hover);
+}
+
+.navLink.active {
+    background-color: var(--color-selected);
+}

@@ -1,0 +1,7 @@
+.botFrame {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 900px;
+    justify-content: space-between;
+}

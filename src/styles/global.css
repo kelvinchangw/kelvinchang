@@ -1,0 +1,52 @@
+@font-face {
+    font-family: "Space Mono";
+    src: url("../assets/fonts/space-mono/SpaceMono-Regular.ttf");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Space Mono";
+    src: url("../assets/fonts/space-mono/SpaceMono-Bold.ttf");
+    font-weight: 700;
+}
+
+html {
+    font-size: 16px;
+    overflow-y: overlay; /* Modern browsers */
+    scrollbar-gutter: stable; /* Reserves space for scrollbar */
+}
+
+body {
+    margin: 0;
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-family: "Space Mono", sans-serif;
+    line-height: 1.5rem;
+}
+
+a {
+    color: inherit;
+}
+
+#root {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.pageContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4rem;
+    max-width: 1440px;
+    min-height: 100vh;
+    width: 100%;
+}
+
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
