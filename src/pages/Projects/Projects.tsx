@@ -1,6 +1,6 @@
 import styles from "./Projects.module.css";
 import noirThumbnail from "../../assets/images/project-noir-thumbnail.jpg";
-import projectPlaceholder from "../../assets/images/project-placeholder.jpg";
+import projectPlaceholder from "../../assets/images/goodtrybuddy.jpg";
 import TopFrame from "../../components/Frames/TopFrame/TopFrame";
 import BotFrame from "../../components/Frames/BotFrame/BotFrame";
 import { Link } from "react-router-dom";
@@ -51,7 +51,7 @@ export default function Projects() {
                     <div className={styles.info}>
                         <div className={styles.heading}>
                             <div className={styles.title}>
-                                <span>[REDACTED]</span>
+                                <span>Project A</span>
                                 <span>[REDACTED]</span>
                             </div>
                             <span

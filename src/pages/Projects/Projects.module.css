@@ -19,7 +19,7 @@
 
 .thumbnailContainer {
     width: 22rem;
-    height: 12rem;
+    height: 14rem;
     flex-shrink: 0;
     border: white 2px solid;
 }
