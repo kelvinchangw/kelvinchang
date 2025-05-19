@@ -109,6 +109,10 @@ export default function ProjectNoir() {
                                     footage for YouTube. ;)
                                 </p>
                             </div>
+                            <span className={styles.date}>19/05/2025</span>
+                            <div>
+                                <p>I am putting the video on indefinite pause. LOL.</p>
+                            </div>
                         </div>
                     </div>
                 </div>

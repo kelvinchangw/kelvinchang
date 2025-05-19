@@ -5,19 +5,13 @@ export default function Home() {
     return (
         <main className={styles.content}>
             <div className={styles.quoteContainer}>
-                <span>
-                    Did you enjoy your time here? Or maybe not? Well, it doesn't
-                    really matter. Though I'm sure you realize that by now.
-                </span>
+                <span>I could be yours, you could be mine</span>
             </div>
             <div className={styles.imgContainer}>
                 <img src={landingPageImg} className={styles.landingPageImg} />
             </div>
             <div className={styles.quoteContainer}>
-                <span>
-                    This place is but a mirror that reflects one's true self
-                    back at them.
-                </span>
+                <span>We could be once in a lifetime</span>
             </div>
         </main>
     );
