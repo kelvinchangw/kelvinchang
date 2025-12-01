@@ -1,14 +1,11 @@
 import styles from "./Projects.module.css";
 import noirThumbnail from "../../assets/images/project-noir-thumbnail.jpg";
 import projectPlaceholder from "../../assets/images/goodtrybuddy.jpg";
-import TopFrame from "../../components/Frames/TopFrame/TopFrame";
-import BotFrame from "../../components/Frames/BotFrame/BotFrame";
 import { Link } from "react-router-dom";
 
 export default function Projects() {
     return (
         <main className={styles.page}>
-            <TopFrame />
             <div className={styles.content}>
                 <Link
                     to="/projects/project-noir"
@@ -64,7 +61,6 @@ export default function Projects() {
                     </div>
                 </div>
             </div>
-            <BotFrame />
         </main>
     );
 }

@@ -1,13 +1,10 @@
 import styles from "./About.module.css";
 import divider from "../../assets/images/divider.png";
 import pfp from "../../assets/images/pfp.png";
-import TopFrame from "../../components/Frames/TopFrame/TopFrame";
-import BotFrame from "../../components/Frames/BotFrame/BotFrame";
 
 export default function About() {
     return (
         <main className={styles.page}>
-            <TopFrame />
             <div className={styles.content}>
                 <div className={styles.whoami}>
                     <span className={styles.title}>whoami</span>
@@ -50,7 +47,6 @@ export default function About() {
                     </div>
                 </div>
             </div>
-            <BotFrame />
         </main>
     );
 }

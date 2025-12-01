@@ -1,13 +1,10 @@
 import styles from "./ProjectNoir.module.css";
-import TopFrame from "../../../components/Frames/TopFrame/TopFrame";
-import BotFrame from "../../../components/Frames/BotFrame/BotFrame";
 import noirThumbnail from "../../../assets/images/project-noir-thumbnail.jpg";
 import divider from "../../../assets/images/divider.png";
 
 export default function ProjectNoir() {
     return (
         <main className={styles.page}>
-            <TopFrame />
             <div className={styles.content}>
                 <div className={styles.thumbnailContainer}>
                     <img src={noirThumbnail} className={styles.noirThumbnail} />
@@ -117,7 +114,6 @@ export default function ProjectNoir() {
                     </div>
                 </div>
             </div>
-            <BotFrame />
         </main>
     );
 }
