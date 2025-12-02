@@ -47,7 +47,7 @@
 .copyrightAndBuiltWith {
     display: flex;
     justify-content: space-between;
-    opacity: 75%;
+    opacity: 50%;
 }
 
 @media (max-width: 480px) {
