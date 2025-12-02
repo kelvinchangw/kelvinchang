@@ -27,19 +27,19 @@ function App() {
         <BrowserRouter>
             <TitleManager />
 
-            {/* Persistent menu bar */}
+            {/* Keep outside of page for persistent menu bar */}
             <MenuBar />
 
             <div className="pageContainer">
-                {/* Header will go here later */}
                 <Header />
+
                 <Routes>
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/projects" element={<Projects />} />
-                    <Route path="/projects/project-noir" element={<ProjectNoir />} /> {/* Add this line */}
+                    <Route path="/projects/project-noir" element={<ProjectNoir />} />
                 </Routes>
-                {/* Footer will go here later */}
+
                 <Footer />
             </div>
         </BrowserRouter>

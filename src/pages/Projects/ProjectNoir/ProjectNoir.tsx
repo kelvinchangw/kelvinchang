@@ -112,6 +112,10 @@ export default function ProjectNoir() {
                             </div>
                         </div>
                     </div>
+                    <img src={divider} alt="" />
+                    <div className={styles.authorSection}>
+                        <p className={styles.authorName}>Kelvin Chang</p>
+                    </div>
                 </div>
             </div>
         </main>
