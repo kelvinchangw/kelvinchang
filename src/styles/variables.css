@@ -1,14 +1,14 @@
 :root {
     /* Stable */
-    --color-background: #0A0A0A;
-    --color-text: #FFFAF0;
+    --color-background: #0e0e0e;
+    --color-text: #fffaf0;
 
-    --color-menuBar-background: #161616;
+    --color-menuBar-background: #1e1e1e;
     --color-hover: #323232;
-    --color-selected: #8000FF;
+    --color-selected: #8000ff;
 
-    --color-project-online: #00FF09;
-    --color-project-dev: #F5D322;
+    --color-project-online: #00ff09;
+    --color-project-dev: #f5d322;
     
     /* Dev */
 
