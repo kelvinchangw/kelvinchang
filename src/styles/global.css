@@ -34,7 +34,7 @@
 
 html {
     font-size: 16px;
-    overflow-y: overlay; /* Modern browsers */
+    overflow-y: scroll; /* Modern browsers */
     scrollbar-gutter: stable; /* Reserves space for scrollbar */
 }
 
