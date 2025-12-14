@@ -42,13 +42,13 @@ export default function About() {
                         </span>
                         <span>
                             I am especially interested in spatial computing and
-                            human-ai interaction. Cybernetics and bionics is
+                            human-ai interaction. Cybernetics and bionics are
                             cool too.
                         </span>
                         <span>
-                            When I am not coding, I play tennis or pickleball
-                            (socially). I also perform and produce under the
-                            name Voidborne.
+                            When I am not coding, I play tennis (competitive) or
+                            pickleball (socially). I also perform and produce
+                            under the name Voidborne.
                         </span>
                         <span>
                             I love hotpot, lamb skewers, and DnB. Mmmmmmmmm.
