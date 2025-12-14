@@ -1,6 +1,7 @@
 import styles from "./Projects.module.css";
 import noirThumbnail from "../../assets/images/project-noir-thumbnail.jpg";
-import projectPlaceholder from "../../assets/images/goodtrybuddy.jpg";
+import projectAPlaceholder from "../../assets/images/project-a.jpg";
+import projectSPlaceholder from "../../assets/images/project-s.jpg";
 import { Link } from "react-router-dom";
 
 export default function Projects() {
@@ -41,7 +42,7 @@ export default function Projects() {
                 <div className={styles.project}>
                     <div className={styles.thumbnailContainer}>
                         <img
-                            src={projectPlaceholder}
+                            src={projectAPlaceholder}
                             className={styles.noirThumbnail}
                         />
                     </div>
@@ -58,6 +59,31 @@ export default function Projects() {
                             </span>
                         </div>
                         {/* <div className={styles.description}></div> */}
+                    </div>
+                </div>
+                <div className={styles.project}>
+                    <div className={styles.thumbnailContainer}>
+                        <img
+                            src={projectSPlaceholder}
+                            className={styles.noirThumbnail}
+                        />
+                    </div>
+                    <div className={styles.info}>
+                        <div className={styles.heading}>
+                            <div className={styles.title}>
+                                <span>Project S</span>
+                                <span>[REDACTED]</span>
+                            </div>
+                            <span
+                                className={`${styles.status} ${styles.devStatus}`}
+                            >
+                                DEV
+                            </span>
+                        </div>
+                        <p className={styles.description}>
+                            "We deemed this to be the fastest and most optimal
+                            way of doing things."
+                        </p>
                     </div>
                 </div>
             </div>
