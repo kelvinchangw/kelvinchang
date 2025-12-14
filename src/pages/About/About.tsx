@@ -14,7 +14,7 @@ export default function About() {
                             <img src={pfp} className={styles.pfp} />
                         </div>
                         <div className={styles.whoamiInfo}>
-                            <span>My name is Kelvin.</span>
+                            <span>Hi, my name is Kelvin.</span>
                             <span>
                                 I do programming and other creative works.
                             </span>
@@ -41,8 +41,17 @@ export default function About() {
                             combine engineering and design.
                         </span>
                         <span>
-                            When I am not coding, I play tennis or pickleball. I
-                            also perform and produce under the name Voidborne.
+                            I am especially interested in spatial computing and
+                            human-ai interaction. Cybernetics and bionics is
+                            cool too.
+                        </span>
+                        <span>
+                            When I am not coding, I play tennis or pickleball
+                            (socially). I also perform and produce under the
+                            name Voidborne.
+                        </span>
+                        <span>
+                            I love hotpot and lamb skewers. And DnB.
                         </span>
                     </div>
                 </div>
