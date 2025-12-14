@@ -51,7 +51,7 @@ export default function About() {
                             name Voidborne.
                         </span>
                         <span>
-                            I love hotpot and lamb skewers. And DnB.
+                            I love hotpot, lamb skewers, and DnB. Mmmmmmmmm.
                         </span>
                     </div>
                 </div>
