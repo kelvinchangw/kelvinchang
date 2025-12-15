@@ -21,7 +21,7 @@ export default function post001() {
                     <div className={styles.writeUp}>
                         <span className={styles.date}>15/12/2025</span>
                         <div>
-                            <p>I am just where I should be.</p>
+                            <p>I am exactly where I should be.</p>
                         </div>
                     </div>
                     <img src={divider} alt="" />
