@@ -3,10 +3,14 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 // Import components
 import Home from "./pages/Home/Home";
 import Projects from "./pages/Projects/Projects";
+import Blog from "./pages/Blog/Blog";
 import About from "./pages/About/About";
 
 // Import projects
 import ProjectNoir from "./pages/Projects/ProjectNoir/ProjectNoir";
+
+// Import blog posts
+import Post001 from "./pages/Blog/001/001";
 
 import MenuBar from "./components/MenuBar/MenuBar";
 import Header from "./components/Header/Header";
@@ -37,7 +41,12 @@ function App() {
                     <Route path="/" element={<Home />} />
                     <Route path="/about" element={<About />} />
                     <Route path="/projects" element={<Projects />} />
-                    <Route path="/projects/project-noir" element={<ProjectNoir />} />
+                    <Route
+                        path="/projects/project-noir"
+                        element={<ProjectNoir />}
+                    />
+                    <Route path="/blog" element={<Blog />} />
+                    <Route path="/blog/001" element={<Post001 />} />
                 </Routes>
 
                 <Footer />

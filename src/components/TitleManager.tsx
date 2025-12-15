@@ -13,6 +13,9 @@ export default function TitleManager() {
             case '/projects':
                 title = 'Projects';
                 break;
+            case '/blog':
+                title = 'Blog';
+                break;
             case '/about':
                 title = 'About';
                 break;

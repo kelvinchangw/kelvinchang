@@ -13,6 +13,7 @@ export default function MenuBar() {
                 <nav className={styles.nav}>
                     <Link to="/" className={`${styles.navLink} ${isActiveRoute('/') ? styles.active : ''}`}>Home</Link>
                     <Link to="/projects" className={`${styles.navLink} ${isActiveRoute('/projects') ? styles.active : ''}`}>Projects</Link>
+                    <Link to="/blog" className={`${styles.navLink} ${isActiveRoute('/blog') ? styles.active : ''}`}>Blog</Link>
                     <Link to="/about" className={`${styles.navLink} ${isActiveRoute('/about') ? styles.active : ''}`}>About</Link>
                 </nav>
             </div>
