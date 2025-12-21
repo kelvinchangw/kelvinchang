@@ -20,7 +20,7 @@ export default function ProjectNoir() {
                     <img src={divider} alt="" />
                     <div className={styles.writeUp}>
                         <div className={styles.block}>
-                            <span className={styles.date}>17/01/2025</span>
+                            <span className={styles.date}>2025/01/17</span>
                             <div>
                                 <p>
                                     I started NOIR as a way to store all of my
@@ -106,7 +106,7 @@ export default function ProjectNoir() {
                                     footage for YouTube. ;)
                                 </p>
                             </div>
-                            <span className={styles.date}>19/05/2025</span>
+                            <span className={styles.date}>2025/05/19</span>
                             <div>
                                 <p>
                                     I am putting the video on indefinite pause.

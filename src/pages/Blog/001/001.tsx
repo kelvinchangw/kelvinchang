@@ -19,7 +19,7 @@ export default function post001() {
                     </div>
                     <img src={divider} alt="" />
                     <div className={styles.writeUp}>
-                        <span className={styles.date}>15/12/2025</span>
+                        <span className={styles.date}>2025/12/15</span>
                         <div>
                             <p>I am exactly where I should be.</p>
                         </div>

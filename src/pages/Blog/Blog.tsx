@@ -13,7 +13,7 @@ export default function Blog() {
                                 Beginning anew
                             </span>
                         </div>
-                        <span className={styles.postDate}>15/12/2025</span>
+                        <span className={styles.postDate}>2025/12/15</span>
                     </div>
                 </Link>
             </div>
