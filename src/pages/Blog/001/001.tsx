@@ -1,4 +1,4 @@
-import styles from "./001.module.css";
+import styles from "../BlogPost.module.css";
 import post001Thumbnail from "../../../assets/images/post-001-thumbnail.jpg";
 import divider from "../../../assets/images/divider.png";
 
