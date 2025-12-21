@@ -107,7 +107,6 @@
 @media (max-width: 480px) {
     .content {
         width: 100%;
-        padding: 1rem;
     }
 
     .thumbnailContainer {
