@@ -1,5 +1,10 @@
 @import "../../styles/variables.css";
 
+main {
+    gap: 4rem;
+    width: 100%;
+}
+
 .content {
     width: 50rem;
     display: flex;
@@ -17,7 +22,7 @@
 .thumbnail {
     width: 100%;
     height: 100%;
-    object-fit: cover;;
+    object-fit: cover;
 }
 
 .post {
@@ -82,4 +87,20 @@
 
 .authorName {
     opacity: 50%;
+}
+
+/* Mobile sizing */
+@media (max-width: 480px) {
+    .content {
+        width: 100%;
+    }
+
+    .thumbnailContainer {
+        width: auto;
+        height: 16rem;
+    }
+
+    .writeUp {
+        padding: 0;
+    }
 }
