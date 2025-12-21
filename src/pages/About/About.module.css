@@ -59,10 +59,6 @@
 }
 
 @media (max-width: 480px) {
-    .content {
-        padding: 1rem;
-    }
-
     .whoami,
     .history {
         width: 100%;

@@ -10,7 +10,6 @@
     width: 50rem;
     gap: 2rem;
     transition: ease-out all 0.1s;
-    padding: 1rem;
 }
 
 .project:hover {
