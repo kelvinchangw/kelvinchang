@@ -3,15 +3,14 @@
     flex-direction: column;
     gap: 4rem;
     align-items: center;
-    width: fit-content;
+    width: 50rem;
 }
 
-.whoami,
-.history {
+.content > div {
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    width: 50rem;
+    width: 100%;
 }
 
 .title {
@@ -42,7 +41,6 @@
     flex-direction: row;
     gap: 2rem;
     align-items: center;
-    padding: 0 1rem;
 }
 
 .whoamiInfo {
@@ -55,14 +53,53 @@
     display: flex;
     flex-direction: column;
     gap: 2rem;
-    padding: 0 1rem;
+}
+
+.songContainer {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 4rem 0;
+}
+
+.song {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 22rem;
+    gap: 0.8rem;
+}
+
+.song > span {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.songComment {
+    font-style: italic;
+}
+
+.coverArtContainer {
+    width: 20rem;
+    height: 20rem;
+}
+
+.coverArt {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 @media (max-width: 480px) {
-    .whoami,
-    .history {
+    .content {
         width: 100%;
-        
+    }
+
+    .content > div {
+        width: 100%;
     }
 
     .divider {
@@ -81,5 +118,10 @@
 
     .historyInfo {
         padding: 0;
+    }
+
+    .songContainer {
+        flex-direction: column;
+        align-items: center;
     }
 }
