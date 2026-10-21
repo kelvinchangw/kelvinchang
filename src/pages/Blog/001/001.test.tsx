@@ -1,6 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import { describe, expect, it } from "vitest";
+import { describe, expect, it, vi } from "vitest";
+import type { Post } from "../../../data/site";
 import Post001 from "./001";
 
 const EM_DASH = "—";
@@ -58,5 +59,27 @@ describe("Post001", () => {
     it("renders no em dashes", () => {
         const { container } = renderPost();
         expect(container.textContent).not.toContain(EM_DASH);
+    });
+
+    it("finds its post by id, not by position in POSTS", async () => {
+        vi.resetModules();
+        vi.doMock("../../../data/site", async (importOriginal) => {
+            const actual = await importOriginal<typeof import("../../../data/site")>();
+            const newer: Post = { ...actual.POSTS[0], id: "002", date: "2026-10-01", title: "Newer", sub: "post" };
+            return { ...actual, POSTS: [newer, ...actual.POSTS] };
+        });
+        try {
+            const { default: Post001WithNewerPost } = await import("./001");
+            render(
+                <MemoryRouter initialEntries={["/blog/001"]}>
+                    <Post001WithNewerPost />
+                </MemoryRouter>,
+            );
+            expect(screen.getByRole("heading", { level: 1, name: "# Beginning anew" })).toBeInTheDocument();
+            expect(screen.queryByText("# Newer")).not.toBeInTheDocument();
+        } finally {
+            vi.doUnmock("../../../data/site");
+            vi.resetModules();
+        }
     });
 });

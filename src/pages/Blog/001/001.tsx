@@ -1,9 +1,15 @@
 import post001Thumbnail from "../../../assets/images/post-001-thumbnail.jpg";
 import { BackLink, Chip, EofMarker, Marker, PhosphorImage, Prompt } from "../../../components/ui";
 import ui from "../../../components/ui/ui.module.css";
-import { POSTS, SITE } from "../../../data/site";
+import { POSTS, SITE, type Post } from "../../../data/site";
 
-const post = POSTS[0];
+function postById(id: string): Post {
+    const post = POSTS.find((entry) => entry.id === id);
+    if (!post) throw new Error(`Post ${id} is missing from POSTS`);
+    return post;
+}
+
+const post = postById("001");
 
 /** Blog post 001: Beginning anew. */
 export default function Post001() {
