@@ -1,0 +1,220 @@
+.monitor {
+    position: relative;
+    width: 100%;
+    height: var(--crt-height, 200px);
+    overflow: hidden;
+    background: var(--color-bg);
+    border: 1px solid var(--color-frame);
+    border-radius: 3px;
+}
+
+.layer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+}
+
+.image {
+    background-size: cover;
+    background-position: 50% 22%;
+}
+
+.base {
+    filter: grayscale(1) contrast(1.25) brightness(0.95);
+    animation: kc-vroll 14s steps(1) infinite;
+}
+
+.glitch1 {
+    filter: grayscale(1) contrast(1.25) brightness(1.15);
+    clip-path: inset(28% 0 62% 0);
+    opacity: 0;
+    animation: kc-glitch1 9s steps(1) infinite;
+}
+
+.glitch2 {
+    filter: grayscale(1) contrast(1.25) brightness(1.15);
+    clip-path: inset(60% 0 24% 0);
+    opacity: 0;
+    animation: kc-glitch2 11s steps(1) infinite;
+}
+
+.splitA {
+    filter: grayscale(1) sepia(1) hue-rotate(230deg) saturate(4) contrast(1.2);
+    mix-blend-mode: screen;
+    opacity: 0.35;
+    animation: kc-split 7s steps(1) infinite;
+}
+
+.splitB {
+    filter: grayscale(1) sepia(1) hue-rotate(130deg) saturate(4) contrast(1.2);
+    mix-blend-mode: screen;
+    opacity: 0.35;
+    animation: kc-split 7s steps(1) infinite reverse;
+}
+
+.tint {
+    background: var(--color-tint);
+    mix-blend-mode: multiply;
+    opacity: 0.8;
+}
+
+.scanlines {
+    background-image: repeating-linear-gradient(
+        0deg,
+        rgba(0, 0, 0, 0.4) 0px,
+        rgba(0, 0, 0, 0.4) 1px,
+        transparent 1px,
+        transparent 3px
+    );
+    background-size: 100% 3px;
+    animation: kc-scanscroll 1.6s linear infinite;
+}
+
+.grain {
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1  0 0 0 0 1  0 0 0 0 1  0 0 0 0.5 0'/></filter><rect width='160' height='160' filter='url(%23n)'/></svg>");
+    opacity: 0.16;
+    mix-blend-mode: overlay;
+    animation: kc-noise 0.6s steps(3) infinite;
+}
+
+.flicker {
+    background: var(--color-text);
+    opacity: 0;
+    mix-blend-mode: screen;
+    animation: kc-flicker 5s steps(1) infinite;
+}
+
+.glass {
+    background:
+        linear-gradient(115deg, rgba(255, 255, 255, 0.08) 0%, rgba(255, 255, 255, 0) 35%),
+        radial-gradient(ellipse at center, transparent 55%, rgba(0, 0, 0, 0.65) 100%);
+}
+
+/* Power-on: shutters retract to the outer edges, a bright line flashes in the middle. */
+.shutterTop,
+.shutterBottom {
+    height: 50%;
+    background: var(--color-bg);
+    animation: kc-shutter 0.9s cubic-bezier(0.2, 0.8, 0.2, 1) 0.25s forwards;
+}
+
+.shutterTop {
+    bottom: auto;
+    transform-origin: top;
+}
+
+.shutterBottom {
+    top: auto;
+    transform-origin: bottom;
+}
+
+.flash {
+    top: 50%;
+    bottom: auto;
+    height: 2px;
+    margin-top: -1px;
+    background: var(--color-bright);
+    box-shadow: 0 0 18px 4px rgba(239, 232, 255, 0.8);
+    animation: kc-flash 1.3s ease-out forwards;
+}
+
+.caption {
+    position: absolute;
+    left: 10px;
+    bottom: 8px;
+    font-size: 12px;
+    color: var(--color-bright);
+    text-shadow: var(--glow-bright);
+}
+
+/* Reduced motion / crtMotion off: freeze every layer. */
+.still .layer {
+    animation: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .layer {
+        animation: none;
+    }
+}
+
+@keyframes kc-vroll {
+    0%, 90%, 100% { transform: translateY(0); }
+    91% { transform: translateY(-14%); }
+    92% { transform: translateY(-55%); }
+    93% { transform: translateY(-100%); }
+    93.01% { transform: translateY(100%); }
+    94% { transform: translateY(42%); }
+    95% { transform: translateY(8%); }
+    96% { transform: translateY(0); }
+}
+
+@keyframes kc-glitch1 {
+    0%, 100% { transform: translateX(0); opacity: 0; }
+    20% { opacity: 0; }
+    21% { transform: translateX(-14px); opacity: 1; }
+    23% { transform: translateX(10px); }
+    25% { transform: translateX(0); opacity: 0; }
+    70% { opacity: 0; }
+    71% { transform: translateX(18px); opacity: 1; }
+    73% { transform: translateX(0); opacity: 0; }
+}
+
+@keyframes kc-glitch2 {
+    0%, 100% { transform: translateX(0); opacity: 0; }
+    40% { opacity: 0; }
+    41% { transform: translateX(12px); opacity: 1; }
+    43% { transform: translateX(-8px); }
+    45% { transform: translateX(0); opacity: 0; }
+    88% { opacity: 0; }
+    89% { transform: translateX(-16px); opacity: 1; }
+    91% { transform: translateX(0); opacity: 0; }
+}
+
+@keyframes kc-split {
+    0%, 100% { transform: translateX(1px); }
+    10% { transform: translateX(1px); }
+    11% { transform: translateX(4px); }
+    13% { transform: translateX(-3px); }
+    15% { transform: translateX(1px); }
+    54% { transform: translateX(1px); }
+    55% { transform: translateX(-5px); }
+    56% { transform: translateX(3px); }
+    58% { transform: translateX(1px); }
+}
+
+@keyframes kc-scanscroll {
+    from { background-position: 0 0; }
+    to { background-position: 0 3px; }
+}
+
+@keyframes kc-noise {
+    0% { background-position: 0 0; }
+    25% { background-position: -30px 20px; }
+    50% { background-position: 40px -10px; }
+    75% { background-position: -10px -40px; }
+    100% { background-position: 20px 30px; }
+}
+
+@keyframes kc-flicker {
+    0%, 100% { opacity: 0; }
+    4% { opacity: 0.09; }
+    5% { opacity: 0; }
+    27% { opacity: 0.05; }
+    28% { opacity: 0; }
+    61% { opacity: 0.12; }
+    62% { opacity: 0; }
+    63% { opacity: 0.04; }
+    64% { opacity: 0; }
+}
+
+@keyframes kc-shutter {
+    from { transform: scaleY(1); }
+    to { transform: scaleY(0); }
+}
+
+@keyframes kc-flash {
+    0% { opacity: 1; }
+    55% { opacity: 0.9; }
+    100% { opacity: 0; }
+}

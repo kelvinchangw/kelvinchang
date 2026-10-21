@@ -1,117 +1,72 @@
-import styles from "./Projects.module.css";
-import noirThumbnail from "../../assets/images/project-noir-thumbnail.jpg";
-import projectAPlaceholder from "../../assets/images/project-a.jpg";
-import projectSPlaceholder from "../../assets/images/project-s.jpg";
-import projectWPlaceholder from "../../assets/images/project-w.jpeg";
 import { Link } from "react-router-dom";
+import { PROJECTS, ROUTE_PATHS, SEP } from "../../data/site";
+import { cx } from "../../lib/cx";
+import { Chip, FootNote, Prompt } from "../../components/ui";
+import ui from "../../components/ui/ui.module.css";
+import styles from "./Projects.module.css";
 
+/** Projects: `ls -la ~/projects`. Only online projects link to a page. */
 export default function Projects() {
+    const online = PROJECTS.filter((project) => project.state === "online").length;
+    const dev = PROJECTS.length - online;
+
     return (
-        <main className={styles.page}>
-            <div className={styles.content}>
-                <Link
-                    to="/projects/project-noir"
-                    className={styles.projectLink}
-                >
-                    <div className={styles.project}>
-                        <div className={styles.thumbnailContainer}>
-                            <img
-                                src={noirThumbnail}
-                                className={styles.noirThumbnail}
-                            />
+        <div className={styles.page}>
+            <section>
+                <Prompt as="h1">$ ls -la ~/projects</Prompt>
+                <div className={styles.scroller}>
+                    <div className={styles.table}>
+                        <div className={cx(ui.tableHead, styles.cols)}>
+                            <span>STATE</span>
+                            <span>SINCE</span>
+                            <span>NAME</span>
+                            <span>DESCRIPTION</span>
                         </div>
-                        <div className={styles.info}>
-                            <div className={styles.heading}>
-                                <div className={styles.title}>
-                                    <span>Project NOIR</span>
-                                    <span>Home server / NAS</span>
-                                </div>
-                                <span
-                                    className={`${styles.status} ${styles.activeStatus}`}
+                        {PROJECTS.map((project, index) => {
+                            const isDev = project.state === "dev";
+                            const className = cx(
+                                ui.row,
+                                styles.cols,
+                                index === PROJECTS.length - 1 && ui.rowLast,
+                                project.route && ui.rowLink,
+                            );
+                            const cells = (
+                                <>
+                                    <span>{isDev ? <Chip variant="outline">DEV</Chip> : <Chip>ONLINE</Chip>}</span>
+                                    <span className={ui.dim}>{project.since}</span>
+                                    <span className={ui.bright}>{project.name}/</span>
+                                    <span className={cx(ui.cell, isDev && ui.dim)}>
+                                        {project.title}
+                                        {project.quote && (
+                                            <span className={ui.dim}>
+                                                {SEP}
+                                                {project.quote}
+                                            </span>
+                                        )}
+                                    </span>
+                                </>
+                            );
+                            return project.route ? (
+                                <Link
+                                    key={project.name}
+                                    to={ROUTE_PATHS[project.route]}
+                                    className={className}
+                                    data-testid="project-row"
                                 >
-                                    ONLINE
-                                </span>
-                            </div>
-                            <p className={styles.description}>
-                                "From distance eternal come black wings o'er the
-                                land. Feathers fall, bringing ruin."
-                            </p>
-                        </div>
-                    </div>
-                </Link>
-                <div className={styles.project}>
-                    <div className={styles.thumbnailContainer}>
-                        <img
-                            src={projectAPlaceholder}
-                            className={styles.noirThumbnail}
-                        />
-                    </div>
-                    <div className={styles.info}>
-                        <div className={styles.heading}>
-                            <div className={styles.title}>
-                                <span>Project A</span>
-                                <span>[REDACTED]</span>
-                            </div>
-                            <span
-                                className={`${styles.status} ${styles.devStatus}`}
-                            >
-                                DEV
-                            </span>
-                        </div>
-                        {/* <div className={styles.description}></div> */}
+                                    {cells}
+                                </Link>
+                            ) : (
+                                <div key={project.name} className={className} data-testid="project-row">
+                                    {cells}
+                                </div>
+                            );
+                        })}
+                        <FootNote>
+                            {PROJECTS.length} projects · {online} online · {dev} in development
+                        </FootNote>
                     </div>
                 </div>
-                <div className={styles.project}>
-                    <div className={styles.thumbnailContainer}>
-                        <img
-                            src={projectSPlaceholder}
-                            className={styles.noirThumbnail}
-                        />
-                    </div>
-                    <div className={styles.info}>
-                        <div className={styles.heading}>
-                            <div className={styles.title}>
-                                <span>Project S</span>
-                                <span>[REDACTED]</span>
-                            </div>
-                            <span
-                                className={`${styles.status} ${styles.devStatus}`}
-                            >
-                                DEV
-                            </span>
-                        </div>
-                        <p className={styles.description}>
-                            "We deemed this to be the fastest and most optimal
-                            way of doing things."
-                        </p>
-                    </div>
-                </div>
-                <div className={styles.project}>
-                    <div className={styles.thumbnailContainer}>
-                        <img
-                            src={projectWPlaceholder}
-                            className={styles.noirThumbnail}
-                        />
-                    </div>
-                    <div className={styles.info}>
-                        <div className={styles.heading}>
-                            <div className={styles.title}>
-                                <span>Project W</span>
-                                <span>[REDACTED]</span>
-                            </div>
-                            <span
-                                className={`${styles.status} ${styles.devStatus}`}
-                            >
-                                DEV
-                            </span>
-                        </div>
-                        <p className={styles.description}>
-                            "Only white wings may silence its echoes of
-                            arrival."
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </main>
+            </section>
+        </div>
     );
 }

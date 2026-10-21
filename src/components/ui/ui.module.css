@@ -1,0 +1,213 @@
+.prompt {
+    color: var(--color-dim);
+}
+
+.chipInverse {
+    background: var(--color-text);
+    color: var(--color-bg);
+    padding: 0 6px;
+    font-size: 12px;
+    text-shadow: none;
+}
+
+.chipOutline {
+    border: 1px solid var(--color-dim);
+    color: var(--color-dim);
+    padding: 0 5px;
+    font-size: 12px;
+}
+
+.marker {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: var(--color-dim);
+    font-size: 12px;
+}
+
+.markerLine {
+    flex: 1;
+    height: 1px;
+    background: var(--color-hairline);
+}
+
+.phosphor {
+    position: relative;
+    width: 720px;
+    max-width: 100%;
+    aspect-ratio: 2 / 1;
+    overflow: hidden;
+    background: var(--color-well);
+    margin: 0;
+}
+
+.phosphorImg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(1) contrast(1.2) brightness(0.9);
+}
+
+.phosphorTint {
+    position: absolute;
+    inset: 0;
+    background: var(--color-tint);
+    mix-blend-mode: multiply;
+    opacity: 0.85;
+}
+
+.phosphorCaption {
+    position: absolute;
+    left: 12px;
+    bottom: 10px;
+    font-size: 12px;
+    color: var(--color-bright);
+}
+
+.backLink {
+    color: var(--color-dim);
+    font-size: 12px;
+    white-space: nowrap;
+}
+
+.backLink:hover {
+    color: var(--color-bright);
+}
+
+.footNote {
+    color: var(--color-dim);
+    font-size: 12px;
+    padding: 8px 8px 0;
+}
+
+/* Tables */
+.tableHead {
+    display: grid;
+    gap: 0 14px;
+    padding: 0 8px 6px;
+    font-size: 12px;
+    color: var(--color-dim);
+}
+
+.row {
+    display: grid;
+    gap: 0 14px;
+    padding: 8px 8px;
+    border-top: 1px solid var(--color-hairline);
+    align-items: baseline;
+}
+
+.row:hover {
+    background: var(--color-hover);
+}
+
+.rowLast {
+    border-bottom: 1px solid var(--color-hairline);
+}
+
+.rowLink {
+    cursor: pointer;
+}
+
+.cell {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.dim {
+    color: var(--color-dim);
+}
+
+.bright {
+    color: var(--color-bright);
+}
+
+.right {
+    text-align: right;
+}
+
+.meta {
+    color: var(--color-dim);
+    font-size: 12px;
+}
+
+/* Reading pages */
+.readingPage {
+    display: flex;
+    flex-direction: column;
+    gap: 28px;
+    max-width: 760px;
+}
+
+.headerRow {
+    display: flex;
+    flex-wrap: wrap; /* the back link drops under the prompt only when a narrow viewport cannot fit both */
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 16px;
+}
+
+.titleRow {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 16px;
+}
+
+.pageTitle {
+    font-size: 28px;
+    line-height: 34px;
+    color: var(--color-bright);
+}
+
+.pageSub {
+    margin-top: 4px;
+    color: var(--color-dim);
+}
+
+.titleChip {
+    margin-top: 8px;
+}
+
+.reading {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    font-size: 15px;
+    line-height: 26px;
+    max-width: 680px;
+}
+
+.reading a {
+    color: var(--color-bright);
+    text-decoration: underline;
+    text-underline-offset: 4px;
+    text-decoration-color: var(--color-dim);
+}
+
+.list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.listItem {
+    display: grid;
+    grid-template-columns: 24px minmax(0, 1fr);
+}
+
+.listDash {
+    color: var(--color-dim);
+}
+
+@media (max-width: 1023px) {
+    .phosphor {
+        width: 100%;
+    }
+}

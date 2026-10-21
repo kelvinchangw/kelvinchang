@@ -1,94 +1,28 @@
-.content {
+.page {
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 32px;
 }
 
-.project {
-    display: flex;
-    flex-direction: row;
-    width: 50rem;
-    gap: 2rem;
-    padding: 1rem;
-    transition: ease-out all 0.1s;
+.scroller {
+    margin-top: 10px;
 }
 
-.project:hover {
-    background-color: var(--color-hover);
-}
-
-.thumbnailContainer {
-    width: 22rem;
-    height: 14rem;
-    flex-shrink: 0;
-    border: white 2px solid;
-}
-
-.noirThumbnail {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.info {
+.table {
     display: flex;
     flex-direction: column;
-    gap: 2rem;
-    width: 100%;
 }
 
-.heading {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+.cols {
+    grid-template-columns: 84px 104px 110px minmax(0, 1fr);
 }
 
-.title {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-}
-
-.title > span:first-child {
-    font-size: 1.75rem;
-}
-
-.title > span:last-child {
-    font-size: 1.25rem;
-    opacity: 75%;
-}
-
-.status {
-    color: var(--color-background);
-    height: fit-content;
-    font-weight: bold;
-    padding: 0 1rem;
-}
-
-.activeStatus {
-    background-color: var(--color-project-online);
-}
-
-.devStatus {
-    background-color: var(--color-project-dev);
-}
-
-@media (max-width: 480px) {
-    .content {
-        gap: 4rem;
+@media (max-width: 1023px) {
+    .scroller {
+        overflow-x: auto;
     }
 
-    .project {
-        flex-direction: column;
-        align-items: center;
-        width: auto;
-        padding: 1rem 0;
-    }
-
-    .thumbnailContainer {
-        width: 100%;
-        height: 16rem;
-        flex-shrink: 0;
-        border: white 2px solid;
+    .table {
+        min-width: 560px;
     }
 }

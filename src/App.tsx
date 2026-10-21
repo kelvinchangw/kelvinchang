@@ -1,28 +1,40 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
-// Import components
+// Pages
 import Home from "./pages/Home/Home";
 import Projects from "./pages/Projects/Projects";
-import Blog from "./pages/Blog/Blog";
-import About from "./pages/About/About";
-
-// Import projects
 import ProjectNoir from "./pages/Projects/ProjectNoir/ProjectNoir";
-
-// Import blog posts
+import Blog from "./pages/Blog/Blog";
 import Post001 from "./pages/Blog/001/001";
+import About from "./pages/About/About";
+import NotFound from "./pages/NotFound/NotFound";
 
-import MenuBar from "./components/MenuBar/MenuBar";
-import Header from "./components/Header/Header";
-import Footer from "./components/Footer/Footer";
+// Shell
+import Shell from "./components/Shell/Shell";
 import TitleManager from "./components/TitleManager";
 
-// Import hooks
+// Hooks
 import useLenis from "./hooks/useLenis";
 
-// Import styles
-import "./styles/variables.css";
-import "./styles/global.css";
+/**
+ * Route table, shared by the app and by tests that render inside a MemoryRouter. Paths match case-sensitively so
+ * the router agrees with the shell path and nav resolution in lib/routes.ts (`/Projects` is a 404, like a Unix path).
+ */
+export function AppRoutes() {
+    return (
+        <Shell>
+            <Routes>
+                <Route path="/" element={<Home />} />
+                <Route path="/about" element={<About />} caseSensitive />
+                <Route path="/projects" element={<Projects />} caseSensitive />
+                <Route path="/projects/project-noir" element={<ProjectNoir />} caseSensitive />
+                <Route path="/blog" element={<Blog />} caseSensitive />
+                <Route path="/blog/001" element={<Post001 />} caseSensitive />
+                <Route path="*" element={<NotFound />} />
+            </Routes>
+        </Shell>
+    );
+}
 
 function App() {
     useLenis();
@@ -30,27 +42,7 @@ function App() {
     return (
         <BrowserRouter>
             <TitleManager />
-
-            {/* Keep outside of page for persistent menu bar */}
-            <MenuBar />
-
-            <div className="pageContainer">
-                <Header />
-
-                <Routes>
-                    <Route path="/" element={<Home />} />
-                    <Route path="/about" element={<About />} />
-                    <Route path="/projects" element={<Projects />} />
-                    <Route
-                        path="/projects/project-noir"
-                        element={<ProjectNoir />}
-                    />
-                    <Route path="/blog" element={<Blog />} />
-                    <Route path="/blog/001" element={<Post001 />} />
-                </Routes>
-
-                <Footer />
-            </div>
+            <AppRoutes />
         </BrowserRouter>
     );
 }

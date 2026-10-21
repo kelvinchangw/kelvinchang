@@ -1,0 +1,5 @@
+/* Unknown URLs can be arbitrarily long; let the echoed path wrap instead of pushing the page sideways. */
+.file {
+    min-width: 0;
+    overflow-wrap: anywhere;
+}

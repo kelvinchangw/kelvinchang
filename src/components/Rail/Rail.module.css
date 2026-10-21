@@ -1,0 +1,109 @@
+.rail {
+    padding: 36px 32px 36px 40px;
+    border-right: 1px solid var(--color-frame);
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+}
+
+.monitor {
+    margin-top: 10px;
+}
+
+.name {
+    margin-top: 14px;
+    font-size: 28px;
+    line-height: 34px;
+    color: var(--color-bright);
+    letter-spacing: -0.01em;
+    white-space: nowrap;
+}
+
+.at {
+    color: var(--color-dim);
+}
+
+.tagline {
+    margin-top: 4px;
+    color: var(--color-dim);
+}
+
+.nav {
+    margin-top: 10px;
+    display: flex;
+    gap: 16px;
+    flex-wrap: wrap;
+}
+
+.navLink {
+    padding: 0 6px;
+    color: var(--color-text);
+}
+
+.navLink:hover {
+    color: var(--color-bright);
+    text-decoration: underline;
+}
+
+.navLink.active,
+.navLink.active:hover {
+    background: var(--color-text);
+    color: var(--color-bg);
+    text-shadow: none;
+    text-decoration: none;
+}
+
+.status {
+    margin-top: 10px;
+    display: grid;
+    grid-template-columns: 96px minmax(0, 1fr);
+    row-gap: 2px;
+}
+
+.pair {
+    display: contents;
+}
+
+.status dt {
+    color: var(--color-dim);
+}
+
+/* The design's rail chip carries no font-size, so it reads at the 14px body size. */
+.status .statusChip {
+    font-size: inherit;
+}
+
+.motd {
+    margin-top: 10px;
+    font-style: italic;
+    color: var(--color-secondary);
+}
+
+@media (max-width: 1023px) {
+    .rail {
+        padding: 24px 16px;
+        border-right: 0;
+        border-bottom: 1px solid var(--color-frame);
+        gap: 20px;
+    }
+
+    .monitor {
+        --crt-height: 120px;
+    }
+
+    .name {
+        font-size: 22px;
+        line-height: 28px;
+    }
+
+    .status {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2px 16px;
+    }
+
+    .pair {
+        display: flex;
+        gap: 8px;
+    }
+}

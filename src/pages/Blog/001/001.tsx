@@ -1,35 +1,33 @@
-import styles from "../BlogPost.module.css";
 import post001Thumbnail from "../../../assets/images/post-001-thumbnail.jpg";
-import divider from "../../../assets/images/divider.png";
+import { BackLink, Chip, EofMarker, Marker, PhosphorImage, Prompt } from "../../../components/ui";
+import ui from "../../../components/ui/ui.module.css";
+import { POSTS, SITE } from "../../../data/site";
 
-export default function post001() {
+const post = POSTS[0];
+
+/** Blog post 001: Beginning anew. */
+export default function Post001() {
     return (
-        <main className={styles.page}>
-            <div className={styles.content}>
-                <div className={styles.thumbnailContainer}>
-                    <img src={post001Thumbnail} className={styles.thumbnail} />
-                </div>
-                <div className={styles.post}>
-                    <div className={styles.heading}>
-                        <div className={styles.title}>
-                            <span>Beginning anew</span>
-                            <span>In search of Heaven</span>
-                        </div>
-                        <span className={styles.postId}>001</span>
-                    </div>
-                    <img src={divider} alt="" />
-                    <div className={styles.writeUp}>
-                        <span className={styles.date}>2025/12/15</span>
-                        <div>
-                            <p>I am exactly where I should be.</p>
-                        </div>
-                    </div>
-                    <img src={divider} alt="" />
-                    <div className={styles.authorSection}>
-                        <p className={styles.authorName}>Kelvin Chang</p>
-                    </div>
-                </div>
+        <article className={ui.readingPage}>
+            <div className={ui.headerRow}>
+                <Prompt>$ cat ~/blog/{post.id}.md</Prompt>
+                <BackLink to="/blog">← ~/blog</BackLink>
             </div>
-        </main>
+            <PhosphorImage src={post001Thumbnail} alt={post.title} caption={`header · 720×360 · ${post.id}.jpg`} />
+            <div className={ui.titleRow}>
+                <div>
+                    <h1 className={ui.pageTitle}># {post.title}</h1>
+                    <div className={ui.pageSub}>## {post.sub}</div>
+                </div>
+                <Chip className={ui.titleChip}>{post.id}</Chip>
+            </div>
+            <Marker left={post.date} right="entry" />
+            <div className={ui.reading}>
+                {post.body.map((paragraph) => (
+                    <p key={paragraph}>{paragraph}</p>
+                ))}
+            </div>
+            <EofMarker>EOF · {SITE.owner}</EofMarker>
+        </article>
     );
 }

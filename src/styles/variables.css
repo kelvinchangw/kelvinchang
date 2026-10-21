@@ -1,19 +1,23 @@
 :root {
-    /* Stable */
-    --color-background: #0e0e0e;
-    --color-text: #fffaf0;
+    /* Violet phosphor palette (design tokens from the Terminal handoff) */
+    --color-bg: #07060b;
+    --color-panel: #09070f;
+    --color-hover: #120e1e;
+    --color-well: #0f0b1a;
+    --color-hairline: #1c1730;
+    --color-frame: #241d3a;
+    --color-dim: #9280c8;
+    --color-secondary: #b5a4e6;
+    --color-text: #c9b8f5;
+    --color-bright: #efe8ff;
+    --color-tint: #9b6bff;
+    --color-placeholder: #4a3f73;
 
-    --color-menuBar-background: #1e1e1e;
-    --color-hover: #323232;
-    --color-selected: #8000ff;
+    --glow: 0 0 8px rgba(200, 180, 255, 0.25);
+    --glow-bright: 0 0 6px rgba(239, 232, 255, 0.6);
 
-    --color-project-online: #00ff09;
-    --color-project-dev: #f5d322;
-    
-    /* Dev */
+    --font-mono: "Fragment Mono", ui-monospace, Menlo, monospace;
 
-    /* Screen breakpoints */
-    /* --mobile-breakpoint: 480px; */
-    /* --tablet-breakpoint: 768px; */
-    /* --desktop-breakpoint: 1024px; */
+    --frame-max-width: 1440px;
+    --rail-width: 400px;
 }
