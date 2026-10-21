@@ -98,11 +98,10 @@ describe("Shell", () => {
             expect(screen.queryByTestId("terminal")).toBeNull();
         });
 
-        it("drives the clock and both uptimes from one ticking clock", () => {
+        it("drives the clock and the rail uptime from one ticking clock", () => {
             renderShell("/");
 
             expect(screen.getByTestId("title-clock")).toHaveTextContent("01:02:03");
-            expect(screen.getByTestId("title-uptime")).toHaveTextContent("up 1d 01:02:03");
             expect(screen.getByTestId("rail-uptime")).toHaveTextContent("1d 01:02:03");
 
             act(() => {
@@ -110,7 +109,6 @@ describe("Shell", () => {
             });
 
             expect(screen.getByTestId("title-clock")).toHaveTextContent("01:02:04");
-            expect(screen.getByTestId("title-uptime")).toHaveTextContent("up 1d 01:02:04");
             expect(screen.getByTestId("rail-uptime")).toHaveTextContent("1d 01:02:04");
         });
 

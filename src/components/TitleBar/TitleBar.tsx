@@ -1,6 +1,6 @@
 import type { Ref } from "react";
 import { SITE } from "../../data/site";
-import { formatClock, formatUptime } from "../../lib/time";
+import { formatClock } from "../../lib/time";
 import styles from "./TitleBar.module.css";
 
 export interface TitleBarProps {
@@ -37,9 +37,6 @@ export default function TitleBar({ path, nowMs, terminalOpen, onToggleTerminal, 
                             /
                         </span>
                     </button>
-                    <span className={styles.uptime} data-testid="title-uptime">
-                        up {formatUptime(nowMs)}
-                    </span>
                     <span className={styles.clock} data-testid="title-clock">
                         {formatClock(new Date(nowMs))}
                     </span>

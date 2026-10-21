@@ -132,7 +132,6 @@ describe("App", () => {
         expect(within(banner).getByTestId("title-path").textContent).toBe("~/");
         expect(within(banner).getByRole("button", { name: ">_ terminal" })).toHaveAttribute("aria-expanded", "false");
         expect(within(banner).getByTestId("title-clock")).toHaveTextContent(/^\d{2}:\d{2}:\d{2}$/);
-        expect(within(banner).getByTestId("title-uptime")).toHaveTextContent(/^up \d+d \d{2}:\d{2}:\d{2}$/);
 
         expect(screen.getByRole("main")).toHaveTextContent("$ tail -f /var/log/kelvin.log");
         expect(document.title).toBe("Kelvin Chang");

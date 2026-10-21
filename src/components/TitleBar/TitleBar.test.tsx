@@ -3,7 +3,7 @@ import userEvent from "@testing-library/user-event";
 import { describe, expect, it, vi } from "vitest";
 import TitleBar, { type TitleBarProps } from "./TitleBar";
 
-/** Local 2025-01-18 02:03:04: one day, two hours, three minutes and four seconds after NOIR's build day. */
+/** Local 2025-01-18 02:03:04. */
 const NOW_MS = new Date(2025, 0, 18, 2, 3, 4).getTime();
 
 function renderBar(overrides: Partial<TitleBarProps> = {}) {
@@ -38,9 +38,10 @@ describe("TitleBar", () => {
         expect(screen.getByTestId("title-path")).toHaveTextContent("~/blog/001");
     });
 
-    it("shows the uptime for nowMs", () => {
+    it("leaves the uptime to the rail", () => {
         renderBar();
-        expect(screen.getByTestId("title-uptime")).toHaveTextContent("up 1d 02:03:04");
+        expect(screen.queryByTestId("title-uptime")).not.toBeInTheDocument();
+        expect(screen.queryByText(/^up \d/)).not.toBeInTheDocument();
     });
 
     it("shows the local clock for nowMs", () => {
@@ -48,10 +49,9 @@ describe("TitleBar", () => {
         expect(screen.getByTestId("title-clock")).toHaveTextContent("02:03:04");
     });
 
-    it("re-renders the clock and uptime when nowMs changes", () => {
+    it("re-renders the clock when nowMs changes", () => {
         renderBar({ nowMs: new Date(2025, 0, 18, 23, 59, 59).getTime() });
         expect(screen.getByTestId("title-clock")).toHaveTextContent("23:59:59");
-        expect(screen.getByTestId("title-uptime")).toHaveTextContent("up 1d 23:59:59");
     });
 
     describe("terminal button", () => {
