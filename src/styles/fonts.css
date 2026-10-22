@@ -1,0 +1,54 @@
+/*
+ * Fragment Mono, SIL OFL 1.1 (see ../assets/fonts/fragment-mono/LICENSE): the latin and latin-ext woff2 subsets from
+ * @fontsource/fragment-mono 5.3.0. index.html preloads the two latin faces and main.tsx waits up to 2 s for them before
+ * the first render, so on a normal connection text never paints in the fallback font and swaps. `block` covers a latin
+ * face still loading when that wait gives up: its text stays invisible until the face lands, but only until 3 s after
+ * main.tsx asked for it (about 1 s past the wait); a face slower than that shows in the fallback font and swaps in.
+ */
+
+/*
+ * Accented latin beyond Latin-1, fetched only when such a character is rendered (in practice, typed into the terminal),
+ * so the first-render wait never covers these two faces. They use swap, not block: while a face is in its block period
+ * Firefox hides every line set in this family at that size, not just the new glyphs, for up to 3 s with block and about
+ * 100 ms with swap. Declared before the latin faces so that, as in fontsource, the latin faces win the two combining
+ * marks (U+0304, U+0308) both subsets carry.
+ */
+@font-face {
+    font-family: "Fragment Mono";
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../assets/fonts/fragment-mono/fragment-mono-latin-ext-400-normal.woff2") format("woff2");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+        U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-family: "Fragment Mono";
+    font-style: italic;
+    font-weight: 400;
+    font-display: swap;
+    src: url("../assets/fonts/fragment-mono/fragment-mono-latin-ext-400-italic.woff2") format("woff2");
+    unicode-range: U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329,
+        U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF;
+}
+
+@font-face {
+    font-family: "Fragment Mono";
+    font-style: normal;
+    font-weight: 400;
+    font-display: block;
+    src: url("../assets/fonts/fragment-mono/fragment-mono-latin-400-normal.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+        U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}
+
+@font-face {
+    font-family: "Fragment Mono";
+    font-style: italic;
+    font-weight: 400;
+    font-display: block;
+    src: url("../assets/fonts/fragment-mono/fragment-mono-latin-400-italic.woff2") format("woff2");
+    unicode-range: U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329,
+        U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD;
+}

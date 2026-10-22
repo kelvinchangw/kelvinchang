@@ -49,7 +49,7 @@ Command names are case-insensitive, and so is the argument to `ls`, `cd`, `open`
 - [Vite](https://vite.dev), React and TypeScript in strict mode (versions in `package.json`)
 - [React Router](https://reactrouter.com) with case-sensitive routes
 - CSS Modules, with the palette, glow and layout tokens in `src/styles/variables.css`; font sizes are plain px values in `global.css` and each module
-- [Fragment Mono](https://fonts.google.com/specimen/Fragment+Mono), self-hosted through `@fontsource/fragment-mono`
+- [Fragment Mono](https://fonts.google.com/specimen/Fragment+Mono) (SIL OFL), self-hosted: the latin and latin-ext woff2 subsets from fontsource 5.3.0 live in `src/assets/fonts/fragment-mono/`, declared in `src/styles/fonts.css`
 - [Lenis](https://lenis.darkroom.engineering) smooth scrolling
 - Vitest, jsdom and Testing Library
 - Deployed on Vercel as a single-page app (`vercel.json` rewrites every path to `index.html`)
@@ -76,15 +76,16 @@ Vercel builds `main`, so a push to `main` is a release. Nothing runs the tests b
 
 ```
 src/
-    main.tsx          fonts, global styles, React root
+    main.tsx          global styles, the font wait, React root
     App.tsx           route table (AppRoutes) and the Lenis hook
     settings.ts       site-wide CRT toggles: scanlines, portrait motion
     data/site.ts      most copy and data: routes, nav, log, projects, posts, NOIR summary, terminal filesystem
-    lib/              pure helpers: terminal interpreter, route resolution, log grouping, time, cx
+    lib/              helpers: terminal interpreter, route resolution, log grouping, time, cx, the font wait
     hooks/            useTerminal, useLenis, useNow, usePrefersReducedMotion
     components/       Shell (frame and shortcuts), TitleBar, Rail, CrtMonitor, Terminal, Overlays, Footer, ui, TitleManager
     pages/            Home, Projects, Projects/ProjectNoir, Blog, Blog/001, About, NotFound
-    styles/           reset, variables (tokens), global
+    assets/           images, and the Fragment Mono woff2 files under fonts/
+    styles/           fonts (@font-face), reset, variables (tokens), global
     test/             vitest setup, fake clock, matchMedia stub
 ```
 
@@ -106,10 +107,11 @@ The tests pin today's content (dates, counts, titles, status rows, NOIR as the o
 ## Behaviour worth knowing
 
 - Routes are case-sensitive, like Unix paths: `/projects` works and `/Projects` renders the 404 page (with HTTP 200, since `vercel.json` rewrites every path to `index.html`). Trailing slashes are fine.
-- Every link or `cd` navigation, even to the page already on screen, scrolls to the top (through Lenis when it is running), so an in-flight smooth scroll cannot override it. Back and forward keep the position the browser restores.
+- Every link or `cd` navigation, even to the page already on screen, scrolls to the top (through Lenis when it is running), so an in-flight smooth scroll cannot override it. Back, forward and reload keep the position the browser restores; the first render is committed synchronously (`flushSync`) so that a reload's restore does not land on an empty page.
 - Under `prefers-reduced-motion` there is no Lenis (native scrolling) and the CRT portrait is a still frame with no power-on sequence.
+- The first render waits up to 2 s for the regular and italic Fragment Mono faces (preloaded from `index.html`), so on a normal connection text never paints in the fallback font and swaps. If a face is still loading after that, the page renders anyway and `font-display: block` keeps that text invisible until the face lands, but only until 3 s after `main.tsx` asked for it (about 1 s more); a face slower than that shows in the fallback font and swaps in. The latin-ext faces, fetched only when such a character is typed into the terminal, use `font-display: swap` instead, because Firefox hides every line of the same size while a blocking face loads.
 - The terminal output is a polite `role="log"` live region. Shortcuts ignore Ctrl, Alt and Meta combinations (not Shift) and keys sent during IME composition, and `Shift+Tab` leaves the command input for the close button.
-- Below 1024px the rail stacks above the content. The design was made for desktop, so the small-screen layout is a best effort that avoids horizontal overflow down to 320px.
+- Below 1024px the rail stacks above the content. The design was made for desktop, so the small-screen layout is a best effort that avoids horizontal overflow down to 320px. In the terminal, a command wider than the input scrolls sideways as you type and wraps when it is echoed, so it moves on Enter; on a phone that starts at around a dozen characters on the NOIR page.
 
 ## Design
 
@@ -119,5 +121,7 @@ Deliberate departures from the design:
 
 - No em dashes: `SEP` and `NO_DATE` replace the design's dash separators, and the terminal banner's dash became a colon.
 - The title bar shows no uptime readout; the rail's `$ status` already has it.
+- The CRT portrait powers on with the shutters alone; the bright line the design flashed across the middle is gone, and the two shutters overlap by a pixel instead of meeting at the middle.
+- The terminal prompt row has a one-character gap (`gap: 1ch`) after the `$` and no top margin, instead of the design's 10px gap and 2px top margin. That matches the single space after the `$` in the echo line `src/lib/terminal.ts` builds, so a command no longer shifts a pixel or two when Enter echoes it into the scrollback; change the two together. The drawer's height is also rounded down to whole 22px lines of scrollback (the design's plain `46vh` is the fallback for browsers without CSS `round()`), so a scrollback that starts to overflow scrolls by whole lines.
 - The music section (a `$ cat ~/music/on-record` block on the home page and a player on About) is left out until the music is finalised. The `*-cover.jpg` files in `src/assets/images/` are kept for it, and `site.test.ts`, `terminal.test.ts`, `Home.test.tsx` and `About.test.tsx` currently assert that it is absent.
 - No mobile design yet; the small-screen layout above is a stopgap.

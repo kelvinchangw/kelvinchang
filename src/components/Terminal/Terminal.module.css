@@ -1,9 +1,15 @@
+/*
+ * Header (39px) + top border (1px) + scrollback margins (32px) = 72px, and the rest is whole 22px lines: once the
+ * scrollback overflows it scrolls by whole lines, so a command never lands part of a line above where it was typed.
+ * The plain `46vh` and the min-height are the fallback where `round()` is unsupported.
+ */
 .panel {
     position: fixed;
     left: 0;
     right: 0;
     bottom: 0;
     height: 46vh;
+    height: calc(round(down, max(46vh, 314px) - 72px, 22px) + 72px);
     min-height: 300px;
     z-index: 20;
     background: var(--color-bg);
@@ -51,7 +57,8 @@
 .scrollback {
     flex: 1;
     overflow: auto;
-    padding: 14px 24px 18px;
+    margin: 14px 0 18px;
+    padding: 0 24px;
     font-size: 14px;
     line-height: 22px;
 }
@@ -72,11 +79,14 @@
     color: var(--color-bright);
 }
 
+/*
+ * Exactly one space after the `$` and no margin, so a command that fits in the input does not move when it is echoed
+ * into the scrollback. A longer one scrolls inside the input but wraps in the echo.
+ */
 .promptLine {
     display: flex;
     align-items: center;
-    gap: 10px;
-    margin-top: 2px;
+    gap: 1ch;
 }
 
 .prompt {
@@ -102,6 +112,7 @@
 @media (max-width: 1023px) {
     .panel {
         height: 60vh;
+        height: calc(round(down, max(60vh, 314px) - 72px, 22px) + 72px);
     }
 
     .header {
@@ -109,7 +120,7 @@
     }
 
     .scrollback {
-        padding: 14px 16px 18px;
+        padding: 0 16px;
     }
 
     .hint {

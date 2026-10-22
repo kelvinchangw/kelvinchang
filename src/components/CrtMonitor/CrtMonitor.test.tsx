@@ -59,9 +59,12 @@ describe("CrtMonitor", () => {
             expect(screen.getByTestId("crt-monitor")).not.toHaveClass(styles.still);
         });
 
-        it("adds the three power-on layers (two shutters and the flash line) to the ten tube layers", () => {
+        it("adds only the two shutters to the ten tube layers (no flash line across the middle)", () => {
             render(<CrtMonitor src={SRC} />);
-            expect(screen.getByTestId("crt-monitor").childElementCount).toBe(13);
+            const monitor = screen.getByTestId("crt-monitor");
+            expect(monitor.childElementCount).toBe(12);
+            const tube = Array.from(monitor.children).filter((layer) => layer.getAttribute("data-testid") !== "crt-shutter");
+            expect(tube).toHaveLength(10);
         });
     });
 

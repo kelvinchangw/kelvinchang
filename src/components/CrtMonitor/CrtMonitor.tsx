@@ -40,7 +40,6 @@ function CrtMonitorBase({ src, caption, motion = true, className }: CrtMonitorPr
                 <>
                     <div className={cx(styles.layer, styles.shutterTop)} data-testid="crt-shutter" />
                     <div className={cx(styles.layer, styles.shutterBottom)} data-testid="crt-shutter" />
-                    <div className={cx(styles.layer, styles.flash)} />
                 </>
             )}
             {caption && <div className={styles.caption}>{caption}</div>}
